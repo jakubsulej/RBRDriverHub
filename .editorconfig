@@ -1,0 +1,4 @@
+﻿[*.{cs,vb}]
+
+# IDE0032: Użyj właściwości automatycznej
+dotnet_style_prefer_auto_properties = true:silent
