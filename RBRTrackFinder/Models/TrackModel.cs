@@ -8,10 +8,10 @@ namespace RBRTrackFinder.Models
 {
     public class TrackModel
     {
-        public string TrackName { get; set; }
-        public string TrackDescription { get; set; }
-        public int TrackSize { get; set; }
-        public string TrackDate { get; set; }
+        public string TrackName { get; }
+        public string TrackDescription { get; }
+        public int TrackSize { get; }
+        public string TrackDate { get; }
         public bool TrackIsInstalled { get; set; }
     }
 }

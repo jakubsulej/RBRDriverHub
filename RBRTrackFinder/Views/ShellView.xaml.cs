@@ -22,40 +22,40 @@ namespace RBRTrackFinder.Views
         public ShellView()
         {
             InitializeComponent();
-            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+            //this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
-        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Minimized;
-            }
-            else if (this.WindowState == WindowState.Minimized)
-            {
-                this.WindowState = WindowState.Normal;
-            }
-        }
+        //private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        //{
+            //if (this.WindowState == WindowState.Normal)
+            //{
+            //    this.WindowState = WindowState.Minimized;
+            //}
+            //else if (this.WindowState == WindowState.Minimized)
+            //{
+            //    this.WindowState = WindowState.Normal;
+            //}
+        //}
 
-        private void ExitButton_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
+        //private void ExitButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    System.Windows.Application.Current.Shutdown();
+        //}
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Visible;
-            ButtonOpenMenu.Visibility = Visibility.Collapsed;
-        }
+        //private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    this.DragMove();
+        //}
+        //private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ButtonCloseMenu.Visibility = Visibility.Visible;
+        //    ButtonOpenMenu.Visibility = Visibility.Collapsed;
+        //}
 
-        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
-        {
-            ButtonCloseMenu.Visibility = Visibility.Collapsed;
-            ButtonOpenMenu.Visibility = Visibility.Visible;
-        }
+        //private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ButtonCloseMenu.Visibility = Visibility.Collapsed;
+        //    ButtonOpenMenu.Visibility = Visibility.Visible;
+        //}
     }
 }

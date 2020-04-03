@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RBRTrackFinder.Views"
+        xmlns:viewmodels="cls-namespace.ViewChanger.ViewModels"
         xmlns:MaterialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="ShellView" Height="600" Width="1024" WindowStartupLocation = "CenterScreen" Topmost="True" WindowStyle="None" ResizeMode="NoResize">
@@ -41,8 +42,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -50,32 +52,36 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--Row1-->
-        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#263238" Margin="0 0 0 0" MouseDown="Grid_MouseDown">
+        <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#263238" Margin="0 0 0 0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="MinimizeButton" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Click="MinimizeButton_Click" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                <Button x:Name="MinimizeButton" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <MaterialDesing:PackIcon Kind="WindowMinimize"/>
                 </Button>
-                <Button x:Name="ExitButton" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Click="ExitButton_Click" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                <Button  x:Name="ExitButton" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                     <MaterialDesing:PackIcon Kind="Power" Width="25" Height="25"/>
                 </Button>
             </StackPanel>
         </Grid>
 
         <!--Row2 Top ToolBox-->
-        <Grid Grid.ColumnSpan="2" Grid.Row="1" Background="#B0BEC5">
-            <TextBlock Margin="0 8 0 0" HorizontalAlignment="Center" Text="RBR Track Finder" Foreground="Black" FontSize="20"/>
+        <Grid Grid.ColumnSpan="3" Grid.Row="1" Background="#B0BEC5" VerticalAlignment="Center">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Text="RBR Drivers Hub" Foreground="Black" FontSize="20"/>
+            </StackPanel>
             <Button HorizontalAlignment="Right" Grid.Column="2" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                 <MaterialDesing:PackIcon Kind="EllipsisVertical" Width="30" Height="30"/>
             </Button>
-            <StackPanel >
-                
-            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="UserNameTitleBar" Text="Username Nameofuser"></TextBlock>
         </Grid>
         
         <!--Test GridBackground-->
 
-        <Grid x:Name="GridBackground" Background="#55313131" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Opacity="0">
-            
+        <Grid x:Name="GridBackground" Background="#55313131" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0">
+            <ContentControl x:Name="ActiveItem">
+                <!--Here is displayed active user controll-->
+            </ContentControl>
         </Grid>
         
         <!--Row3 Left Side Drawer-->
@@ -94,16 +100,16 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Click="ButtonOpenMenu_Click">
+            <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="HamburgerMenu" Width="30" Height="30"/>
             </Button>
-            <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
+            <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Visibility="Collapsed">
                 <MaterialDesing:PackIcon Kind="ArrowLeft" Width="30" Height="30"/>
             </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="1" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+            <Button x:Name="LoadUserPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="1" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="UserCircle" Width="30" Height="30"/>
             </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="2" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+            <Button x:Name="LoadMessagePage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="2" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="MessageText" Width="30" Height="30"/>
             </Button>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="3" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
