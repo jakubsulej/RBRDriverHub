@@ -4,31 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RBRTrackFinder.Views"
-        xmlns:viewmodels="cls-namespace.ViewChanger.ViewModels"
+        xmlns:views="clr-namespace:RBRTrackFinder.Views"
         xmlns:MaterialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewModels="clr-namespace:RBRTrackFinder.ViewModels"
         mc:Ignorable="d"
         Title="ShellView" Height="600" Width="1024" WindowStartupLocation = "CenterScreen" Topmost="True" WindowStyle="None" ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <viewModels:ShellViewModel />
+    </Window.DataContext>
 
     <Window.Resources>
+        <!--<DataTemplate x:Name="UserViewTemplate" DataType="{x:Type viewModels:UserViewModel}">
+            <views:UserView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="UserMessageTemplate" DataType="{x:Type viewModels:MessageViewModel}">
+            <views:MessageView DataContext="{Binding}"/>
+        </DataTemplate>-->
+
+        <!--OpenMenuAnimation-->
+        
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="200"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
                 <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>-->
         </Storyboard>
         <Storyboard x:Key="CloseMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="50"/>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>-->
         </Storyboard>
     </Window.Resources>
     <Window.Triggers>
@@ -54,10 +68,10 @@
         <!--Row1-->
         <Grid Grid.Row="0" Grid.ColumnSpan="3" Background="#263238" Margin="0 0 0 0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="MinimizeButton" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                <Button Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="MinimizeButton_Click">
                     <MaterialDesing:PackIcon Kind="WindowMinimize"/>
                 </Button>
-                <Button  x:Name="ExitButton" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                <Button Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="ExitButton_Click">
                     <MaterialDesing:PackIcon Kind="Power" Width="25" Height="25"/>
                 </Button>
             </StackPanel>
@@ -76,12 +90,10 @@
             <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="UserNameTitleBar" Text="Username Nameofuser"></TextBlock>
         </Grid>
         
-        <!--Test GridBackground-->
+        <!--GridBackground-->
 
-        <Grid x:Name="GridBackground" Background="#55313131" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Opacity="0">
-            <ContentControl x:Name="ActiveItem">
-                <!--Here is displayed active user controll-->
-            </ContentControl>
+        <Grid x:Name="GridBackground" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
+            <ContentControl x:Name="ActiveItem"/>
         </Grid>
         
         <!--Row3 Left Side Drawer-->
@@ -100,10 +112,10 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+            <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Click="ButtonOpenMenu_Click">
                 <MaterialDesing:PackIcon Kind="HamburgerMenu" Width="30" Height="30"/>
             </Button>
-            <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Visibility="Collapsed">
+            <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="White" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
                 <MaterialDesing:PackIcon Kind="ArrowLeft" Width="30" Height="30"/>
             </Button>
             <Button x:Name="LoadUserPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="1" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
@@ -112,10 +124,10 @@
             <Button x:Name="LoadMessagePage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="2" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="MessageText" Width="30" Height="30"/>
             </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="3" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+            <Button x:Name="LoadDownloadPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="3" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="FileDownload" Width="30" Height="30"/>
             </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="4" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+            <Button x:Name="LoadTournamentPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="4" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="TrophyVariant" Width="30" Height="30"/>
             </Button>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="5" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">

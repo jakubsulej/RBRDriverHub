@@ -4,11 +4,56 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RBRTrackFinder.Views"
-             mc:Ignorable="d" Background="Blue"
+             xmlns:MaterialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Background="White"
              d:DesignHeight="600" d:DesignWidth="1024">
     <Grid>
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="Messages View Controller!"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                        <MaterialDesing:PackIcon Kind="Refresh" Width="20" Height="20"/>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                        <MaterialDesing:PackIcon Kind="Create" Width="20" Height="20"/>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                        <MaterialDesing:PackIcon Kind="Delete" Width="20" Height="20"/>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                        <MaterialDesing:PackIcon Kind="TickAll" Width="20" Height="20"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Left" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                        <MaterialDesing:PackIcon Kind="EmailOpen" Width="30" Height="30"/>
+                    </Button>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Text="Recived Emails"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" HorizontalAlignment="Left" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                        <MaterialDesing:PackIcon Kind="EmailSend" Width="30" Height="30"/>
+                    </Button>
+                    <TextBlock VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Text="Sent Emails"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

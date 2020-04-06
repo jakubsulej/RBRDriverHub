@@ -4,9 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RBRTrackFinder.Views"
-             mc:Ignorable="d" Background="Red"
+             xmlns:MaterialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Background="White"
              d:DesignHeight="600" d:DesignWidth="1024">
     <Grid>
-        <TextBlock Text="User View Controller!"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <MaterialDesing:PackIcon Kind="User" Width="160" Height="160"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock FontSize="28" Text="Username Nameofuser"/>
+                    <TextBlock FontSize="20" Text="emailadres@email.com"/>
+                </StackPanel>
+            </Grid>
+            <TextBlock Text="Licence:" Grid.Row="2" Grid.Column="1"/>
+            <TextBlock Text="Entered Tournaments:" Grid.Row="3" Grid.Column="1"/>
+            <TextBlock Text="Finished Tournaments:" Grid.Row="4" Grid.Column="1"/>
+            <TextBlock Text="Wins:" Grid.Row="5" Grid.Column="1"/>
+            <TextBlock Text="SS Wins:" Grid.Row="6" Grid.Column="1"/>
+            <TextBlock Text="Covered Kilometers:" Grid.Row="7" Grid.Column="1"/>
+            <TextBlock Text="" Grid.Row="2" Grid.Column="2"/>
+            <TextBlock Text="" Grid.Row="3" Grid.Column="2"/>
+            <TextBlock Grid.Row="4" Grid.Column="2"/>
+            <TextBlock Grid.Row="5" Grid.Column="2"/>
+            <TextBlock Grid.Row="6" Grid.Column="2"/>
+            <TextBlock Grid.Row="7" Grid.Column="2"/>
+        </Grid>
     </Grid>
 </UserControl>

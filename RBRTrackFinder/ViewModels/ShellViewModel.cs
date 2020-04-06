@@ -2,6 +2,7 @@
 using RBRTrackFinder.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,36 +11,29 @@ using System.Windows.Input;
 
 namespace RBRTrackFinder.ViewModels
 {
-	public class ShellViewModel : DependencyObject
+
+	public class ShellViewModel : Conductor<object>
 	{
+
 		private string _firstName;
 		private string _lastName;
 
-		//Tutaj nie wiadomo czy nie usunąć! <== Dodana klasa TestCommand!
-
-		public ICommand CloseWindowCommand { get; set; }
-
-		public ShellViewModel()
+		public void LoadUserPage()
 		{
-			this.CloseWindowCommand = new TestCommand(ExecuteCloseWindowCommand, CanExecuteCloseWindowCommand);
+			ActivateItem(new UserViewModel());
 		}
 
-		public bool CanExecuteCloseWindowCommand(object parameter)
+		public void LoadMessagePage()
 		{
-			return true;
+			ActivateItem(new MessageViewModel());
 		}
 
-		public void ExecuteCloseWindowCommand(object parameter)
-		{
-			MessageBox.Show("Executing command 1");
-		}
-
-		// Tego nie usuwać
+		//Rest of action
 
 		public string UserNameTitleBar
 		{
 			get { return $"{FirstName} {LastName}"; }
-		}
+		} //Returns string FirstName and LastName to Textbl
 
 		public string FirstName
 		{
@@ -51,52 +45,6 @@ namespace RBRTrackFinder.ViewModels
 		{
 			get { return _lastName; }
 			set { _lastName = value; }
-		}
-
-		public WindowState WindowState { get; private set; }
-
-		public void LoadUserPage()
-		{
-			//ActivateItem(new UserViewModel());
-		}
-
-		public void LoadMessagePage()
-		{
-			//ActivateItem(new MessageViewModel());
-		}
-
-		public void ButtonOpenMenu()
-		{
-			//ButtonCloseMenu.Visibility = Visibility.Visible;
-			//ButtonOpenMenu.Visibility = Visibility.Collapsed;
-		}
-
-		public void ButtonCloseMenu()
-		{
-			//ButtonCloseMenu.Visibility = Visibility.Collapsed;
-			//ButtonOpenMenu.Visibility = Visibility.Visible;
-		}
-
-		public void MinimizeButton()
-		{
-			if (this.WindowState == WindowState.Normal)
-			{
-				this.WindowState = WindowState.Minimized;
-			}
-			else if (this.WindowState == WindowState.Minimized)
-			{
-				this.WindowState = WindowState.Normal;
-			}
-		}
-
-		//public void ExitButton()
-		//{
-		//	System.Windows.Application.Current.Shutdown();
-		//}
-
-		private void Grid_MouseDown()
-		{
-			//this.DragMove();
 		}
 	}
 }
