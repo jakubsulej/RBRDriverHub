@@ -17,6 +17,13 @@ namespace RBRTrackFinder.ViewModels
 
 		private string _firstName;
 		private string _lastName;
+		private LoginViewModel _loginVM;
+
+		public ShellViewModel(LoginViewModel loginVM) //Automatycznie otwiara okno loginViewModel
+		{
+			_loginVM = loginVM;
+			ActivateItem(_loginVM);
+		}
 
 		public void LoadUserPage()
 		{

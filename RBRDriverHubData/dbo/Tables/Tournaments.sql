@@ -1,4 +1,4 @@
 ﻿CREATE TABLE [dbo].[Tournaments]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[TorunamentId] INT NOT NULL PRIMARY KEY
 )

@@ -9,10 +9,6 @@
         xmlns:viewModels="clr-namespace:RBRTrackFinder.ViewModels"
         mc:Ignorable="d"
         Title="ShellView" Height="600" Width="1024" WindowStartupLocation = "CenterScreen" Topmost="True" WindowStyle="None" ResizeMode="NoResize">
-    
-    <Window.DataContext>
-        <viewModels:ShellViewModel />
-    </Window.DataContext>
 
     <Window.Resources>
         <!--<DataTemplate x:Name="UserViewTemplate" DataType="{x:Type viewModels:UserViewModel}">
@@ -87,7 +83,7 @@
             </Button>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
-            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="UserNameTitleBar" Text="Username Nameofuser"></TextBlock>
+            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="UserNameTitleBar"></TextBlock>
         </Grid>
         
         <!--GridBackground-->
