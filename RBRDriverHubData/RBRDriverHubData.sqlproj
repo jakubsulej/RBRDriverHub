@@ -69,6 +69,7 @@
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Tracks.sql" />
     <Build Include="dbo\Tables\Tournaments.sql" />
+    <Build Include="dbo\Tables\Cars.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RBRDriverHubData.refactorlog" />
