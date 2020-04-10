@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using RBRTrackFinder.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace RBRTrackFinder.ViewModels
     {
 		private string _userEmail;
 		private string _password;
+		private IAPIHelper _apiHelper;
+
+		public LoginViewModel(IAPIHelper apiHelper)
+		{
+			_apiHelper = apiHelper;
+		}
 
 		public string UserEmail
 		{
@@ -47,9 +54,16 @@ namespace RBRTrackFinder.ViewModels
 			}
 		}
 
-		public void LogIn()
+		public async Task LogIn()
 		{
-			Console.WriteLine();
+			try
+			{
+				var result = await _apiHelper.Authenticate(UserEmail, Password);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine();
+			}
 		}
 	}
 }

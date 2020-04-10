@@ -40,7 +40,9 @@ namespace RBRTrackFinder.ViewModels
 		public string UserNameTitleBar
 		{
 			get { return $"{FirstName} {LastName}"; }
-		} //Returns string FirstName and LastName to Textbl
+		} 
+		
+		//Returns string FirstName and LastName to Textbl
 
 		public string FirstName
 		{
