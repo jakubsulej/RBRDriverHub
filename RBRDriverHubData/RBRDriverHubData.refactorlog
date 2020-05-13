@@ -42,4 +42,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="TorunamentId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a557d0c6-f9c1-44be-987c-de497a435fcb" ChangeDateTime="05/11/2020 11:13:08">
+    <Property Name="ElementName" Value="[dbo].[Cars].[CarModel]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Cars]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CarName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5fbad4bf-b652-4f83-bc39-acd1ff42d581" ChangeDateTime="05/13/2020 10:43:38">
+    <Property Name="ElementName" Value="[dbo].[Tournaments].[TorunamentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Tournaments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6fc2b288-7208-4f29-834d-1b4f0755febc" ChangeDateTime="05/13/2020 11:16:35">
+    <Property Name="ElementName" Value="[dbo].[Messages].[Message]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Messages]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MessageContent" />
+  </Operation>
 </Operations>

@@ -7,6 +7,8 @@
         xmlns:views="clr-namespace:RBRTrackFinder.Views"
         xmlns:MaterialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewModels="clr-namespace:RBRTrackFinder.ViewModels"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="ShellView" Height="600" Width="1024" WindowStartupLocation = "CenterScreen" Topmost="True" WindowStyle="None" ResizeMode="NoResize">
 
@@ -75,12 +77,25 @@
 
         <!--Row2 Top ToolBox-->
         <Grid Grid.ColumnSpan="3" Grid.Row="1" Background="#B0BEC5" VerticalAlignment="Center">
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center" Text="RBR Drivers Hub" Foreground="Black" FontSize="20"/>
+            <StackPanel VerticalAlignment="Center" Height="50">
+                <TextBlock Margin="10" HorizontalAlignment="Center" Text="RBR Drivers Hub" Foreground="Black" FontSize="20"/>
             </StackPanel>
-            <Button HorizontalAlignment="Right" Grid.Column="2" Width="50" Height="50" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
-                <MaterialDesing:PackIcon Kind="EllipsisVertical" Width="30" Height="30"/>
-            </Button>
+            <MaterialDesing:PopupBox HorizontalAlignment="Right" Margin="10" StaysOpen="False">
+                <StackPanel Orientation="Vertical" Width="150">
+                    <Button Content="Login">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="LoadLoginPage">
+                                    <!--<cal:Parameter Value="{Binding ElementName=Name, Path=Text}" />-->
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Content="Settings"/>
+                    <Button Content="User Profile"/>
+                    <Button Content="Help"/>
+                </StackPanel>
+            </MaterialDesing:PopupBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="UserNameTitleBar"></TextBlock>
@@ -126,7 +141,7 @@
             <Button x:Name="LoadTournamentPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="4" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="TrophyVariant" Width="30" Height="30"/>
             </Button>
-            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="5" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+            <Button x:Name="LoadForumPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="5" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="Forum" Width="30" Height="30"/>
             </Button>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="6" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">

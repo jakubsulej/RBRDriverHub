@@ -54,6 +54,14 @@
                     <TextBlock VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Text="Sent Emails"/>
                 </StackPanel>
             </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                <ListView>
+                    <GridView>
+                        <GridViewColumn Header="Topic"/>
+                        <GridViewColumn Header="UserName"/>
+                    </GridView>
+                </ListView>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

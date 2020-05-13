@@ -19,21 +19,39 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <TextBlock FontSize="30" Margin="0 0 0 150" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" Text="Login to RBRTrackFinder"/>
-            <TextBlock FontSize="20" Margin="5" HorizontalAlignment="Right" Text="Email:" Grid.Row="2" Grid.Column="1"/>
-            <TextBox x:Name="UserEmail" Margin="5" Grid.Row="2" Grid.Column="2" Width="200" HorizontalAlignment="Left"/>
-            <TextBlock FontSize="20" Margin="5" HorizontalAlignment="Right" Text="Password:" Grid.Row="3" Grid.Column="1"/>
-            <PasswordBox x:Name="Password" Margin="5" Grid.Row="3" Grid.Column="2" Width="200" HorizontalAlignment="Left"/>
-            <Button x:Name="LogIn" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="150">
+            
+            <!--Row 1 Title text-->
+            <TextBlock FontSize="30" Margin="0 0 0 120" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="1" Text="Login to RBRTrackFinder"/>
+            
+            <!--Row 2 Email Error Message-->
+            <TextBlock x:Name="ErrorMessage" Visibility="{Binding IsErrorVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center"  Foreground="Red" MaxWidth="280" TextWrapping="Wrap"/>
+
+            <!--Row 3 Email line text-->
+            <TextBlock FontSize="20" Margin="5" HorizontalAlignment="Right" Text="Email:" Grid.Row="3" Grid.Column="1"/>
+            <TextBox x:Name="UserEmail" Margin="5" Grid.Row="3" Grid.Column="2" Width="200" HorizontalAlignment="Left"/>
+            
+            <!--Row 4 Password line text-->
+            <TextBlock FontSize="20" Margin="5" HorizontalAlignment="Right" Text="Password:" Grid.Row="4" Grid.Column="1"/>
+            <PasswordBox x:Name="Password" Margin="5" Grid.Row="4" Grid.Column="2" Width="200" HorizontalAlignment="Left"/>
+            
+            <!--Row 5 Button login line-->
+            <Button x:Name="LogIn" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Width="150">
                 Log in
             </Button>
-            <StackPanel Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                <TextBlock Text="You dont have a user profile?"/>
-                <TextBlock Foreground="DarkBlue" Text=" Register here!"/>
+            
+            <!--Row 6 Register link line-->
+            <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="You dont have a user profile? "/>
+                <Button Background="{x:Null}" FontSize="12" FontWeight="Normal" BorderBrush="{x:Null}" Foreground="Blue" x:Name="RegisterButton">
+                    <TextBlock TextDecorations="Underline">
+                        Register Here!
+                    </TextBlock>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

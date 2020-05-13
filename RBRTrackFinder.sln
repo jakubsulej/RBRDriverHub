@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBRTrackFinder", "RBRTrackFinder\RBRTrackFinder.csproj", "{36BF3548-25E6-40C5-89F8-297C5F460545}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBRDesktopUI", "RBRTrackFinder\RBRDesktopUI.csproj", "{36BF3548-25E6-40C5-89F8-297C5F460545}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{75F90DDC-F9F0-4597-B203-653B7547108C}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,6 +13,10 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RBRDriverHubData", "RBRDriverHubData\RBRDriverHubData.sqlproj", "{E5360144-AA60-4532-987F-FA2EEE9D4DFA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBRDataManager", "RBRDataManager\RBRDataManager.csproj", "{FA31F5FE-9B2F-4655-A6A7-6869528C5DB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBRDataManager.Library", "RBRDataManager.Library\RBRDataManager.Library.csproj", "{248F7E4B-35E0-42BF-A911-C650B436CF4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RBRDesktopUI.Library", "RBRDesktopUI.Library\RBRDesktopUI.Library.csproj", "{664BA80E-C838-4652-B854-C987585705A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +38,14 @@ Global
 		{FA31F5FE-9B2F-4655-A6A7-6869528C5DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA31F5FE-9B2F-4655-A6A7-6869528C5DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA31F5FE-9B2F-4655-A6A7-6869528C5DB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{248F7E4B-35E0-42BF-A911-C650B436CF4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{248F7E4B-35E0-42BF-A911-C650B436CF4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{248F7E4B-35E0-42BF-A911-C650B436CF4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{248F7E4B-35E0-42BF-A911-C650B436CF4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664BA80E-C838-4652-B854-C987585705A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664BA80E-C838-4652-B854-C987585705A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664BA80E-C838-4652-B854-C987585705A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664BA80E-C838-4652-B854-C987585705A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

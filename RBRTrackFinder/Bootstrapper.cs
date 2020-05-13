@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using RBRDesktopUI.Library.Api;
+using RBRDesktopUI.Library.Models;
 using RBRTrackFinder.Helpers;
 using RBRTrackFinder.ViewModels;
 using System;
@@ -27,11 +29,13 @@ namespace RBRTrackFinder
 
         protected override void Configure()
         {
-            _container.Instance(_container);
+            _container.Instance(_container)
+                .PerRequest<ICarEndpoint, CarEndpoint>();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
             GetType().Assembly.GetTypes()

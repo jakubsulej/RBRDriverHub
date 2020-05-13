@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using RBRDesktopUI.Library.Api;
+using RBRTrackFinder.EventModels;
 
 namespace RBRTrackFinder.ViewModels
 {
@@ -13,11 +16,14 @@ namespace RBRTrackFinder.ViewModels
 		private string _userEmail;
 		private string _password;
 		private IAPIHelper _apiHelper;
+		private IEventAggregator _events;
 
-		public LoginViewModel(IAPIHelper apiHelper)
+		public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events)
 		{
 			_apiHelper = apiHelper;
+			_events = events;
 		}
+
 
 		public string UserEmail
 		{
@@ -40,6 +46,38 @@ namespace RBRTrackFinder.ViewModels
 				NotifyOfPropertyChange(() => CanLogIn);
 			}
 		}
+
+		public bool IsErrorVisible
+		{
+			get 
+			{
+				bool output = false;
+
+				if (String.IsNullOrWhiteSpace(ErrorMessage))
+				{
+					output = false;
+				}
+				else
+				{
+					output = true;
+				}
+				return output;
+			}
+		}
+
+		private string _errorMessage;
+
+		public string ErrorMessage
+		{
+			get { return _errorMessage; }
+			set 
+			{
+				_errorMessage = value;
+				NotifyOfPropertyChange(() => ErrorMessage);
+				NotifyOfPropertyChange(() => IsErrorVisible);
+			}
+		}
+
 		public bool CanLogIn
 		{
 			get
@@ -58,11 +96,17 @@ namespace RBRTrackFinder.ViewModels
 		{
 			try
 			{
+				ErrorMessage = "";
 				var result = await _apiHelper.Authenticate(UserEmail, Password);
+
+				// Capture more informations about the user
+				await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+
+				_events.PublishOnUIThread(new LogOnEvent());
 			}
 			catch (Exception ex)
 			{
-				Console.WriteLine();
+				ErrorMessage = ex.Message;
 			}
 		}
 	}
