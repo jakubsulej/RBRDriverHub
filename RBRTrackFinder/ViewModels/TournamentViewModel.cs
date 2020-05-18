@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RBRTrackFinder.ViewModels
 {
@@ -14,6 +15,8 @@ namespace RBRTrackFinder.ViewModels
     {
         private BindingList<CarModel> _cars;
         private BindingList<TrackModel> _tracks;
+        private CarModel _selectedCar;
+        private TrackModel _selectedTrack;
         ICarEndpoint _carEndpoint;
         ITrackEndpoint _trackEndpoint;
 
@@ -27,6 +30,7 @@ namespace RBRTrackFinder.ViewModels
         {
             base.OnViewLoaded(view);
             await LoadCars();
+            await LoadTracks();
         }
 
         private async Task LoadCars() //Async method for geting a car model to a list.
@@ -44,9 +48,11 @@ namespace RBRTrackFinder.ViewModels
         public BindingList<CarModel> Cars
         {
             get { return _cars; }
-            set {
+            set
+            {
                 _cars = value;
                 NotifyOfPropertyChange(() => Cars); //If set, fire notify
+                NotifyOfPropertyChange(() => CanAddTournament); //Whenever quantity changes checkout a CanAddToTournament method
             }
         }
 
@@ -57,7 +63,51 @@ namespace RBRTrackFinder.ViewModels
             {
                 _tracks = value;
                 NotifyOfPropertyChange(() => Tracks);
+                NotifyOfPropertyChange(() => CanAddTournament);
+            }
+        }
+
+        public CarModel SelectedCar //Select Car from a listView form
+        {
+            get { return _selectedCar; }
+            set
+            {
+                _selectedCar = value;
+                NotifyOfPropertyChange(() => SelectedCar);
+                NotifyOfPropertyChange(() => CanAddTournament);
+            }
+        }
+
+        public TrackModel SelectedTrack
+        {
+            get { return _selectedTrack; }
+            set
+            {
+                _selectedTrack = value;
+                NotifyOfPropertyChange(() => SelectedTrack);
+                NotifyOfPropertyChange(() => CanAddTournament);
+            }
+        }
+
+        public void CreateTournament()
+        {
+
+        }
+
+        public bool CanAddTournament //Checks if all properties are selected to add a new tournament
+        {
+            get
+            {
+                bool output = false;
+
+                if (SelectedCar != null && SelectedTrack != null)
+                {
+                    output = true;
+                }
+
+                return output;
             }
         }
     }
 }
+

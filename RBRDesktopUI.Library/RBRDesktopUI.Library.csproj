@@ -52,12 +52,15 @@
     <Compile Include="Api\CarEndpoint.cs" />
     <Compile Include="Api\IAPIHelper.cs" />
     <Compile Include="Api\ICarEndpoint.cs" />
+    <Compile Include="Api\IMessageEndpoint.cs" />
     <Compile Include="Api\ITrackEndpoint.cs" />
+    <Compile Include="Api\MessageEndpoint.cs" />
     <Compile Include="Api\TrackEndpoint.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\TrackModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

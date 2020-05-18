@@ -9,18 +9,53 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="TrackList" Grid.Row="1" Grid.Column="1">
-            
-        </ListBox>
+        
+        <!--Row 1-->
+        <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="5">
+            <ListBox x:Name="Tracks" Grid.Row="1" Grid.Column="1" Margin="10" SelectedItem="{Binding SelectedTrack}" SelectionMode="Single">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding TrackViewModel}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
+            <Image Source="{Binding Path=SelectedTrack.TrackImage}"/>
+        </Grid>
+        
+        <!--Row 2-->
+        <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+            <TextBlock FontSize="20" FontWeight="Black" Text="{Binding Path=SelectedTrack.TrackName}"/>
+            <TextBlock FontSize="20" Margin="20 0 0 0" FontWeight="Light" Text="{Binding Path=SelectedTrack.TrackLength}"/>
+            <TextBlock FontSize="20" Margin="5 0 0 0" FontWeight="Light" Text="km"/>
+        </StackPanel>
+        
+        <!--Row 3-->
+        <StackPanel Grid.Row="3" Grid.Column="3" Orientation="Horizontal">
+            <Image Source="{Binding}"/>
+            <TextBlock Text="{Binding Path=SelectedTrack.TrackDescription}"/>
+        </StackPanel>
+        
+        <!--Row 4-->
+        <StackPanel Grid.Row="4" Grid.Column="3">
+            <TextBlock Text="{Binding Path=SelectedTrack.TrackInstallState}"/>
+            <Button Width="120" Content="Install"/>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

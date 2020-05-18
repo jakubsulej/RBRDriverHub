@@ -24,16 +24,20 @@ namespace RBRTrackFinder.ViewModels
 		private MasterViewModel _masterVM;
 		private LoginViewModel _loginVM;
 		private TournamentViewModel _tournamentVM;
+		private TrackViewModel _trackVM;
+		private MessageViewModel _messageVM;
 		private SimpleContainer _container;
 
 		public ShellViewModel(IEventAggregator events, LoginViewModel loginVM, MasterViewModel masterVM, 
-			TournamentViewModel tournamentVM, SimpleContainer container)
+			TournamentViewModel tournamentVM, TrackViewModel trackVM, MessageViewModel messageVM, SimpleContainer container)
 		{
 			_events = events;
 			_container = container;
 			_masterVM = masterVM;
 			_loginVM = loginVM;
 			_tournamentVM = tournamentVM;
+			_trackVM = trackVM;
+			_messageVM = messageVM;
 
 			_events.Subscribe(this);
 			ActivateItem(_container.GetInstance<LoginViewModel>());
@@ -50,12 +54,12 @@ namespace RBRTrackFinder.ViewModels
 
 		public void LoadMessagePage()
 		{
-			ActivateItem(new MessageViewModel());
+			ActivateItem(_messageVM);
 		}
 
 		public void LoadDownloadPage()
 		{
-			ActivateItem(new TrackViewModel());
+			ActivateItem(_trackVM);
 		}
 
 		public void LoadTournamentPage()
@@ -79,8 +83,6 @@ namespace RBRTrackFinder.ViewModels
 				ActivateItem(_loginVM);
 			}
 		}
-
-
 
 		public string UserNameTitleBar
 		{

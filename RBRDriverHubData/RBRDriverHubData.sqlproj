@@ -75,6 +75,7 @@
     <Build Include="dbo\Stored Procedures\spTracksGetAll.sql" />
     <Build Include="dbo\Stored Procedures\spTournamentsGetAll.sql" />
     <Build Include="dbo\Tables\Messages.sql" />
+    <Build Include="dbo\Stored Procedures\spMessagesGetAll.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RBRDriverHubData.refactorlog" />

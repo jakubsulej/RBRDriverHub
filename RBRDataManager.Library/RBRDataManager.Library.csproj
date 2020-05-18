@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\CarData.cs" />
+    <Compile Include="DataAccess\MessageData.cs" />
     <Compile Include="DataAccess\TournamentData.cs" />
     <Compile Include="DataAccess\TrackData.cs" />
     <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\TournamentModel.cs" />
     <Compile Include="Models\TrackModel.cs" />
     <Compile Include="Models\UserModel.cs" />

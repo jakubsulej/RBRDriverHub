@@ -30,7 +30,9 @@ namespace RBRTrackFinder
         protected override void Configure()
         {
             _container.Instance(_container)
-                .PerRequest<ICarEndpoint, CarEndpoint>();
+                .PerRequest<ICarEndpoint, CarEndpoint>()
+                .PerRequest<ITrackEndpoint, TrackEndpoint>()
+                .PerRequest<IMessageEndpoint, MessageEndpoint>();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()

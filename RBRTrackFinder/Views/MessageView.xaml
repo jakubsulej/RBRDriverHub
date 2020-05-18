@@ -54,13 +54,56 @@
                     <TextBlock VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Text="Sent Emails"/>
                 </StackPanel>
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
-                <ListView>
-                    <GridView>
-                        <GridViewColumn Header="Topic"/>
-                        <GridViewColumn Header="UserName"/>
-                    </GridView>
-                </ListView>
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <ListBox Name="Messages" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedMessage}" SelectionMode="Single">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="280" />
+                                    <ColumnDefinition Width="70"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Vertical">
+                                    <TextBlock FontSize="15" FontWeight="Medium" Text="{Binding MessageSenderShort}"/>
+                                    <TextBlock Text="{Binding MessageTopicShort}"/>
+                                    <TextBlock Text="{Binding MessageContentShort}"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding MessageDateShort}"/>
+                                <MaterialDesing:PackIcon Grid.Column="2" Kind="Attachment" Visibility="{Binding MessageAttachmentState}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="SemiBold" Text="{Binding Path=SelectedMessage.MessageTopic}"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=SelectedMessage.MessageSender}"/>
+                        <TextBlock Text="{Binding Path=SelectedMessage.MessageAdressee}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+                        <Border Margin="0 20 0 20" Height="1" VerticalAlignment="Top" Background="#8888"/>
+                        <TextBlock Text="{Binding Path=SelectedMessage.MessageContent}"/>
+                    </StackPanel>
+                    <Border BorderBrush="#eeeeee" CornerRadius="5" BorderThickness="1" Grid.Column="1" Grid.Row="3">
+                        <StackPanel Grid.Row="2">
+                            <TextBox Text="Reply to message here..." BorderBrush="White" Margin="20" VerticalAlignment="Top" Height="100" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
