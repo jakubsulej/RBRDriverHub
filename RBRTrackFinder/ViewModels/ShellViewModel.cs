@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using RBRDesktopUI.Library.Api;
+using RBRDesktopUI.Library.Models;
 using RBRTrackFinder.EventModels;
 using RBRTrackFinder.Models;
 using System;
@@ -45,6 +46,7 @@ namespace RBRTrackFinder.ViewModels
 		public void Handle(LogOnEvent message)
 		{
 			ActivateItem(_masterVM);
+			_loginVM = _container.GetInstance<LoginViewModel>();
 		}
 
 		public void LoadUserPage()
@@ -60,11 +62,13 @@ namespace RBRTrackFinder.ViewModels
 		public void LoadDownloadPage()
 		{
 			ActivateItem(_trackVM);
+			_trackVM = _container.GetInstance<TrackViewModel>();
 		}
 
 		public void LoadTournamentPage()
 		{
 			ActivateItem(_tournamentVM);
+			_tournamentVM = _container.GetInstance<TournamentViewModel>();
 		}
 
 		public void LoadForumPage()
@@ -82,11 +86,6 @@ namespace RBRTrackFinder.ViewModels
 			{
 				ActivateItem(_loginVM);
 			}
-		}
-
-		public string UserNameTitleBar
-		{
-			get { return $"{FirstName} {LastName}"; }
 		}
 
 		public string FirstName

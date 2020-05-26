@@ -53,15 +53,22 @@
     <Compile Include="Api\IAPIHelper.cs" />
     <Compile Include="Api\ICarEndpoint.cs" />
     <Compile Include="Api\IMessageEndpoint.cs" />
+    <Compile Include="Api\ITournamentPostEndpoint.cs" />
     <Compile Include="Api\ITrackEndpoint.cs" />
     <Compile Include="Api\MessageEndpoint.cs" />
+    <Compile Include="Api\TournamentPostEndpoint.cs" />
     <Compile Include="Api\TrackEndpoint.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
     <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\CarTournamentItemModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\TournamentPostDetailModel.cs" />
+    <Compile Include="Models\TournamentPostModel.cs" />
     <Compile Include="Models\TrackModel.cs" />
+    <Compile Include="Models\TrackTournamentItemModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

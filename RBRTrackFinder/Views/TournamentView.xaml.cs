@@ -24,5 +24,15 @@ namespace RBRTrackFinder.Views
         {
             InitializeComponent();
         }
+
+        private void TournamentName_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            TournamentName.Text = "";
+        }
+
+        private void TournamentDescription_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            TournamentDescription.Text = "";
+        }
     }
 }

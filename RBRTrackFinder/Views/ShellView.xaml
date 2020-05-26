@@ -98,7 +98,7 @@
             </MaterialDesing:PopupBox>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
-            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right" x:Name="UserNameTitleBar"></TextBlock>
+            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right"></TextBlock>
         </Grid>
         
         <!--GridBackground-->

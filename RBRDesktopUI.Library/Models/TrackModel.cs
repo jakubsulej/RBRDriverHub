@@ -11,6 +11,8 @@ namespace RBRDesktopUI.Library.Models
         private bool _trackIsInstalled;
         private string _trackInstallState;
         private string _trackId;
+        private string _trackLength;
+        private string _trackImage;
 
         public int Id { get; set; }
 
@@ -40,7 +42,11 @@ namespace RBRDesktopUI.Library.Models
 
         public string TrackCountry { get; set; }
 
-        public string TrackLength { get; set; }
+        public string TrackLength
+        {
+            get { return _trackLength; }
+            set { _trackLength = value; }
+        }
 
         public string TournamentTrackName
         {
@@ -69,7 +75,17 @@ namespace RBRDesktopUI.Library.Models
             set { _trackInstallState = value; }
         }
 
-        private string _trackImage;
+        private double _trackLengthDecimal;
+
+        public double TrackLengthDecimal
+        {
+            get 
+            {
+                _trackLengthDecimal = Convert.ToDouble(TrackLength);
+                return _trackLengthDecimal; 
+            }
+            set { _trackLengthDecimal = value; }
+        }
 
         public string TrackImage
         {
