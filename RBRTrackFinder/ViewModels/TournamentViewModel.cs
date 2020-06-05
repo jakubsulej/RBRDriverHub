@@ -16,6 +16,10 @@ namespace RBRTrackFinder.ViewModels
     {
         private BindingList<CarModel> _cars;
         private BindingList<TrackModel> _tracks;
+
+        private BindingList<TrackTournamentItemModel> _trackTournamentItem = new BindingList<TrackTournamentItemModel>();
+        private BindingList<CarTournamentItemModel> _carTournamentItemModel = new BindingList<CarTournamentItemModel>();
+
         private CarModel _selectedCar;
         private TrackModel _selectedTrack;
         private TrackTournamentItemModel _selectedTrackToRemove;
@@ -23,15 +27,25 @@ namespace RBRTrackFinder.ViewModels
         private DateTime _startDate = DateTime.Now;
         private string _tournamentName;
         private string _tournamentDescription;
+        private string _tournamentId;
+        private string _userId;
+        ILoggedInUserModel _loggedInUserModel;
         ICarEndpoint _carEndpoint;
         ITrackEndpoint _trackEndpoint;
+        ITournamentCarPostEndpoint _tournamentCarPostEndpoint;
+        ITournamentTrackPostEndpoint _tournamentTrackPostEndpoint;
         ITournamentPostEndpoint _tournamentPostEndpoint;
 
-        public TournamentViewModel(ICarEndpoint carEndpoint, ITrackEndpoint trackEndpoint, ITournamentPostEndpoint tournamentPostEndpoint) //Just a constructor with a dependency injection implement
+        public TournamentViewModel(ICarEndpoint carEndpoint, ITrackEndpoint trackEndpoint, ITournamentCarPostEndpoint tournamentCarPostEndpoint,
+            ITournamentTrackPostEndpoint tournamentTrackPostEndpoint, ITournamentPostEndpoint tournamentPostEndpoint,
+            ILoggedInUserModel loggedInUserModel) //Just a constructor with a dependency injection implement
         {
             _carEndpoint = carEndpoint;
             _trackEndpoint = trackEndpoint;
+            _tournamentCarPostEndpoint = tournamentCarPostEndpoint;
+            _tournamentTrackPostEndpoint = tournamentTrackPostEndpoint;
             _tournamentPostEndpoint = tournamentPostEndpoint;
+            _loggedInUserModel = loggedInUserModel;
         }
 
         protected override async void OnViewLoaded(object view) //Can be added a waiting cursor or icon when loading
@@ -75,8 +89,6 @@ namespace RBRTrackFinder.ViewModels
             }
         }
 
-        private BindingList<TrackTournamentItemModel> _trackTournamentItem = new BindingList<TrackTournamentItemModel>();
-
         public BindingList<TrackTournamentItemModel> TrackTournamentItem
         {
             get { return _trackTournamentItem; }
@@ -86,8 +98,6 @@ namespace RBRTrackFinder.ViewModels
                 NotifyOfPropertyChange(() => TrackTournamentItem);
             }
         }
-
-        private BindingList<CarTournamentItemModel> _carTournamentItemModel = new BindingList<CarTournamentItemModel>();
 
         public BindingList<CarTournamentItemModel> CarTournamentItem
         {
@@ -106,7 +116,6 @@ namespace RBRTrackFinder.ViewModels
             {
                 _selectedCar = value;
                 NotifyOfPropertyChange(() => SelectedCar);
-                //NotifyOfPropertyChange(() => CanAddTournament);
                 NotifyOfPropertyChange(() => CanAddCar);
             }
         }
@@ -119,7 +128,6 @@ namespace RBRTrackFinder.ViewModels
                 _selectedTrack = value;
                 NotifyOfPropertyChange(() => SelectedTrack);
                 NotifyOfPropertyChange(() => CanAddTrack);
-                //NotifyOfPropertyChange(() => CanAddTournament);
             }
         }
 
@@ -182,7 +190,7 @@ namespace RBRTrackFinder.ViewModels
         }
 
 
-        public DateTime StartDate
+        public DateTime StartTournamentDate
         {
             get { return _startDate; }
             set 
@@ -202,7 +210,7 @@ namespace RBRTrackFinder.ViewModels
 
         private int _stageOrder = 0;
 
-        public int StageOrder //Increments Items
+        public int StageOrder
         {
             get
             {
@@ -213,6 +221,26 @@ namespace RBRTrackFinder.ViewModels
             {
                 _stageOrder = value;
             }
+        }
+
+        public string TournamentId
+        {
+            get 
+            {
+                if(UserId != null)
+                {
+                    DateTime dateTime = DateTime.UtcNow;
+
+                    _tournamentId = (DateTime.UtcNow.ToUniversalTime().ToString("u") + "-" +  UserId).Replace(" ", "-");
+                }
+                else
+                {
+                    throw new Exception("Could not find any UserId");
+                }
+
+                return _tournamentId; 
+            }
+            set { _tournamentId = value; }
         }
 
         public void AddTrack()
@@ -261,50 +289,74 @@ namespace RBRTrackFinder.ViewModels
 
         public async Task CreateTournament()
         {
-            TournamentPostModel tournamentPost = new TournamentPostModel();
+            await PostTrackModel();
+            await PostCarModel();
+            await PostTournamentModel();
+        }
+
+        public async Task PostTrackModel()
+        {
+            TournamentTrackPostModel tournamentTrackPost = new TournamentTrackPostModel();
 
             foreach (var item in TrackTournamentItem)
             {
-                tournamentPost.TournamentPostDetails.Add(new TournamentPostDetailModel
+                tournamentTrackPost.TournamentTrackPostDetails.Add(new TournamentTrackPostDetailModel
                 {
                     TrackId = item.Track.TrackId,
-                    StageOrderInTournament = StageOrder
+                    StageOrderInTournament = item.StageOrderInTournament,
+                    TournamentId = TournamentId,
+                    TournamentStageId = item.StageOrderInTournament + "-" + TournamentId
                 });
             }
 
-            tournamentPost.TournamentPostDetails.Add(new TournamentPostDetailModel
-            {
-                TournamentName = TournamentName,
-                TournamentDescription = TournamentDescription,
-                TournamentDateTime = StartDate
-            });
+            await _tournamentTrackPostEndpoint.PostTrackTournament(tournamentTrackPost);
+        }
+
+        public async Task PostCarModel()
+        {
+            TournamentCarPostModel tournamentCarPost = new TournamentCarPostModel();
 
             foreach (var item in CarTournamentItem)
             {
-                tournamentPost.TournamentPostDetails.Add(new TournamentPostDetailModel
+                tournamentCarPost.TournamentCarPostDetails.Add(new TournamentCarPostDetailModel
                 {
-                    CarId = item.Car.Id
+                    CarId = item.Car.Id,
+                    TournamentId = TournamentId
                 });
             }
+
+            await _tournamentCarPostEndpoint.PostCarTournament(tournamentCarPost);
+        }
+
+        public async Task PostTournamentModel()
+        {
+            TournamentPostModel tournamentPost = new TournamentPostModel();
+
+                tournamentPost.TournamentPostDetails.Add(new TournamentPostDetailModel
+                {
+                    TournamentDescription = TournamentDescription,
+                    TournamentName = TournamentName,
+                    TournamentId = TournamentId,
+                    TournamentDate = StartTournamentDate,
+                    TournamentUserId = UserId
+                });
 
             await _tournamentPostEndpoint.PostTournament(tournamentPost);
         }
 
-        private string _tournamentDateTime;
-
-        public string TournamentDateTime
+        public string UserId
         {
             get 
             {
-                return _tournamentDateTime; 
+                _userId = _loggedInUserModel.Id;
+                return _userId; 
             }
             set 
-            {
-                _tournamentDateTime = value;
-                NotifyOfPropertyChange(() => TournamentDateTime);
+            { 
+                _userId = value;
+                NotifyOfPropertyChange(() => TournamentId);
             }
         }
-
 
         public double SubTotalKm
         {
@@ -378,7 +430,7 @@ namespace RBRTrackFinder.ViewModels
             }
         }
 
-        public bool CanCreateTournament //Checks if all properties are selected to add a new tournament
+        public bool CanCreateTournament
         {
             get
             {

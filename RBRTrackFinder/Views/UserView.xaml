@@ -18,12 +18,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="160"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
@@ -32,22 +26,23 @@
             </Grid>
             <Grid Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
                 <StackPanel>
-                    <TextBlock FontSize="28" Text="Username Nameofuser"/>
-                    <TextBlock FontSize="20" Text="emailadres@email.com"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="28" x:Name="UserFirstName"/>
+                        <TextBlock Margin="10 0 0 0" FontSize="28" x:Name="UserLastName"/>
+                    </StackPanel>
+                    <TextBlock FontSize="20" x:Name="UserEmail"/>
                 </StackPanel>
             </Grid>
-            <TextBlock Text="Licence:" Grid.Row="2" Grid.Column="1"/>
-            <TextBlock Text="Entered Tournaments:" Grid.Row="3" Grid.Column="1"/>
-            <TextBlock Text="Finished Tournaments:" Grid.Row="4" Grid.Column="1"/>
-            <TextBlock Text="Wins:" Grid.Row="5" Grid.Column="1"/>
-            <TextBlock Text="SS Wins:" Grid.Row="6" Grid.Column="1"/>
-            <TextBlock Text="Covered Kilometers:" Grid.Row="7" Grid.Column="1"/>
-            <TextBlock Text="" Grid.Row="2" Grid.Column="2"/>
-            <TextBlock Text="" Grid.Row="3" Grid.Column="2"/>
-            <TextBlock Grid.Row="4" Grid.Column="2"/>
-            <TextBlock Grid.Row="5" Grid.Column="2"/>
-            <TextBlock Grid.Row="6" Grid.Column="2"/>
-            <TextBlock Grid.Row="7" Grid.Column="2"/>
+            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <!--<ListBox x:Name="UserRallyInfo" Grid.Row="1" Grid.Column="1" Margin="10">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding UserLicence}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>-->
+                
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

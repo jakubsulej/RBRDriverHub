@@ -34,7 +34,7 @@ namespace RBRDataManager.Library.Internal.DataAccess
         {
             string connectionString = GetConnectionString(connectionStringName);
 
-            using (IDbConnection con = new SqlConnection())
+            using (IDbConnection con = new SqlConnection(connectionString))
             {
                 con.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
             }

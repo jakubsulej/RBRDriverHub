@@ -80,6 +80,9 @@
             <StackPanel VerticalAlignment="Center" Height="50">
                 <TextBlock Margin="10" HorizontalAlignment="Center" Text="RBR Drivers Hub" Foreground="Black" FontSize="20"/>
             </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
+                <TextBlock x:Name="UserName"/>
+            </StackPanel>
             <MaterialDesing:PopupBox HorizontalAlignment="Right" Margin="10" StaysOpen="False">
                 <StackPanel Orientation="Vertical" Width="150">
                     <Button Content="Login">

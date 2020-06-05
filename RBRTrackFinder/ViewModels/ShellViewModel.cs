@@ -28,9 +28,13 @@ namespace RBRTrackFinder.ViewModels
 		private TrackViewModel _trackVM;
 		private MessageViewModel _messageVM;
 		private SimpleContainer _container;
+		private UserViewModel _userVM;
+		private ILoggedInUserModel _loggedInUserModel;
+		private IAPIHelper _apiHelper;
 
 		public ShellViewModel(IEventAggregator events, LoginViewModel loginVM, MasterViewModel masterVM, 
-			TournamentViewModel tournamentVM, TrackViewModel trackVM, MessageViewModel messageVM, SimpleContainer container)
+			TournamentViewModel tournamentVM, UserViewModel userVM, TrackViewModel trackVM, MessageViewModel messageVM, SimpleContainer container,
+			ILoggedInUserModel loggedInUserModel, IAPIHelper apiHelper)
 		{
 			_events = events;
 			_container = container;
@@ -39,6 +43,9 @@ namespace RBRTrackFinder.ViewModels
 			_tournamentVM = tournamentVM;
 			_trackVM = trackVM;
 			_messageVM = messageVM;
+			_userVM = userVM;
+			_loggedInUserModel = loggedInUserModel;
+			_apiHelper = apiHelper;
 
 			_events.Subscribe(this);
 			ActivateItem(_container.GetInstance<LoginViewModel>());
@@ -51,7 +58,7 @@ namespace RBRTrackFinder.ViewModels
 
 		public void LoadUserPage()
 		{
-			ActivateItem(new UserViewModel());
+			ActivateItem(_userVM);
 		}
 
 		public void LoadMessagePage()
@@ -73,7 +80,7 @@ namespace RBRTrackFinder.ViewModels
 
 		public void LoadForumPage()
 		{
-
+			
 		}
 
 		public void LoadLoginPage()
@@ -90,9 +97,13 @@ namespace RBRTrackFinder.ViewModels
 
 		public string FirstName
 		{
-			get { return _firstName; }
+			get 
+			{
+				_firstName = _loggedInUserModel.FirstName;
+				return _firstName; 
+			}
 			set 
-			{ 
+			{
 				_firstName = value;
 				NotifyOfPropertyChange(() => FirstName);
 			}
@@ -100,7 +111,11 @@ namespace RBRTrackFinder.ViewModels
 
 		public string LastName
 		{
-			get { return _lastName; }
+			get 
+			{
+				_lastName = _loggedInUserModel.LastName;
+				return _lastName;
+			}
 			set 
 			{ 
 				_lastName = value;

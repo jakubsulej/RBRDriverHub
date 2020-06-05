@@ -6,6 +6,6 @@ namespace RBRDesktopUI.Library.Api
 {
     public interface IMessageEndpoint
     {
-        Task<List<MessageModel>> GetAll();
+        Task<List<MessageDBModel>> GetAll();
     }
 }

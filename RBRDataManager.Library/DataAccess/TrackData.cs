@@ -18,5 +18,14 @@ namespace RBRDataManager.Library.DataAccess
 
             return output;
         }
+
+        public TrackModel GetTrackById(int trackId)
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var output = sql.LoadData<TrackModel, dynamic>("dbo.spTracksGetById", new { Id = trackId }, "RBRDriverHubData").FirstOrDefault();
+
+            return output;
+        }
     }
 }

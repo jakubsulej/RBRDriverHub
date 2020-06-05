@@ -1,20 +1,47 @@
 ﻿using RBRDataManager.Library.Internal.DataAccess;
 using RBRDataManager.Library.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RBRDataManager.Library.DataAccess
 {
     public class MessageData
     {
-        public List<MessageModel> GetMessages()
+        public string messageSenderName;
+        public string messageAdresseeName;
+        public string messageSenderId;
+        public string messageAdresseeId;
+
+        public List<MessageDBModel> GetMessages(string userId)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
-            var output = sql.LoadData<MessageModel, dynamic>("dbo.spMessagesGetAll", new { }, "RBRDriverHubData");
+            var output = sql.LoadData<MessageDBModel, dynamic>("dbo.spMessagesGetById", new { AdresseeId = userId }, "RBRDriverHubData");
+
+            foreach (var item in output)
+            {
+                messageAdresseeId = item.MessageAdresseeId;
+                messageSenderId = item.MessageSenderId;
+            }
+
+            var messageSenderData = sql.LoadData<UserModel, dynamic>("dbo.spUserLookup", new { Id = messageSenderId }, "RBRDriverHubData");
+
+            foreach (var item in messageSenderData)
+            {
+                messageSenderName = item.FirstName + " " + item.LastName;
+            }
+
+            var messageAdresseeData = sql.LoadData<UserModel, dynamic>("dbo.spUserLookup", new { Id = messageAdresseeId }, "RBRDriverHubData");
+
+            foreach (var item in messageAdresseeData)
+            {
+                messageAdresseeName = item.FirstName + " " + item.LastName;
+            }
+
+            foreach (var item in output)
+            {
+                item.MessageSenderId = messageSenderName;
+                item.MessageAdresseeId = messageAdresseeName;
+            }
 
             return output;
         }

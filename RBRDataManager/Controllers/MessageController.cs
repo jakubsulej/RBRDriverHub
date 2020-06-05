@@ -1,4 +1,5 @@
-﻿using RBRDataManager.Library.DataAccess;
+﻿using Microsoft.AspNet.Identity;
+using RBRDataManager.Library.DataAccess;
 using RBRDataManager.Library.Models;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,15 @@ namespace RBRDataManager.Controllers
 {
     public class MessageController : ApiController
     {
-        public List<MessageModel> Get()
+        public List<MessageDBModel> GetById()
         {
+            string userId = RequestContext.Principal.Identity.GetUserId();
+
             MessageData data = new MessageData();
 
-            return data.GetMessages();
+            UserData user = new UserData();
+
+            return data.GetMessages(userId);
         }
     }
 }

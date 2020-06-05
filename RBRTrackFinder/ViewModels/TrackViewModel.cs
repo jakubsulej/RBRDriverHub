@@ -21,7 +21,7 @@ namespace RBRTrackFinder.ViewModels
             _trackEndpoint = trackEndpoint;
         }
 
-        protected override async void OnViewLoaded(object view) //Can be added a waiting cursor or icon when loading
+        protected override async void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
             await LoadTracks();

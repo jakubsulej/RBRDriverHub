@@ -31,21 +31,5 @@ namespace RBRDesktopUI.Library.Api
                 }
             }
         }
-
-        //public async Task<List<TrackModel>> GetAll()
-        //{
-        //    using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/Track"))
-        //    {
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            var result = await response.Content.ReadAsAsync<List<TrackModel>>();
-        //            return result;
-        //        }
-        //        else
-        //        {
-        //            throw new Exception(response.ReasonPhrase);
-        //        }
-        //    }
-        //}
     }
 }

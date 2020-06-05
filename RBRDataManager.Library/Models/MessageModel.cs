@@ -8,13 +8,13 @@ namespace RBRDataManager.Library.Models
 {
     public class MessageModel
     {
-        public int Id { get; set; }
-        public string MessageTopic { get; set; }
+        public string UserName { get; set; }
+        public string MessageId { get; set; }
+        public string MessageSubject { get; set; }
         public string MessageContent { get; set; }
         public string MessageAttachment { get; set; }
-        public string MessageAdressee { get; set; }
-        public string MessageSender { get; set; }
+        public string MessageAdresseeName { get; set; }
+        public string MessageSenderName { get; set; }
         public DateTime MessageDate { get; set; }
-
     }
 }

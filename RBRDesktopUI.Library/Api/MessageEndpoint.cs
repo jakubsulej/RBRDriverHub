@@ -16,13 +16,13 @@ namespace RBRDesktopUI.Library.Api
             _apiHelper = apiHelper;
         }
 
-        public async Task<List<MessageModel>> GetAll()
+        public async Task<List<MessageDBModel>> GetAll()
         {
             using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/Message"))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<List<MessageModel>>();
+                    var result = await response.Content.ReadAsAsync<List<MessageDBModel>>();
                     return result;
                 }
                 else

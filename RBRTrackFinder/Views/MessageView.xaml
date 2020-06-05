@@ -49,8 +49,8 @@
                                     <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" Orientation="Vertical">
-                                    <TextBlock FontSize="15" FontWeight="Medium" Text="{Binding MessageSenderShort}"/>
-                                    <TextBlock Text="{Binding MessageTopicShort}"/>
+                                    <TextBlock FontSize="15" FontWeight="Medium" Text="{Binding MessageSenderId}"/>
+                                    <TextBlock Text="{Binding MessageSubjectShort}"/>
                                     <TextBlock Text="{Binding MessageContentShort}"/>
                                 </StackPanel>
                                 <TextBlock Grid.Column="1" Text="{Binding MessageDateShort}"/>
@@ -73,10 +73,11 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="SemiBold" Text="{Binding Path=SelectedMessage.MessageTopic}"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="SemiBold" Text="{Binding Path=SelectedMessage.MessageSubject}"/>
                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                        <TextBlock Text="{Binding Path=SelectedMessage.MessageSender}"/>
-                        <TextBlock Text="{Binding Path=SelectedMessage.MessageAdressee}"/>
+                        <TextBlock Text="{Binding Path=SelectedMessage.MessageSenderId}"/>
+                        <TextBlock Text=" to "/>
+                        <TextBlock Text="{Binding Path=SelectedMessage.MessageAdresseeId}"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
                         <Border Margin="0 20 0 20" Height="1" VerticalAlignment="Top" Background="#8888"/>
@@ -84,10 +85,11 @@
                     </StackPanel>
                     <Border  BorderBrush="#eeeeee" CornerRadius="5" BorderThickness="1" Grid.Column="1" Grid.Row="3">
                         <StackPanel Grid.Row="2">
-                            <TextBox Text="Reply to a message." x:Name="ReplyTexBox" BorderBrush="White" Margin="20" VerticalAlignment="Top" Height="60" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+                            <TextBox x:Name="ReplyText" BorderBrush="White" Margin="20" VerticalAlignment="Top" Height="60" AcceptsReturn="True" 
+                                     TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  Focusable="True" GotKeyboardFocus="ReplyText_GotKeyboardFocus"/>
                             <StackPanel Orientation="Horizontal">
-                                <Button HorizontalAlignment="Left" Width="100" Margin="20 0 0 0" Content="Reply"/>
-                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                                <Button x:Name="Reply" HorizontalAlignment="Left" Width="100" Margin="20 0 0 0" Content="Reply"/>
+                                <Button x:Name="MessageAttachment" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
                                     <MaterialDesing:PackIcon Kind="Attachment" Width="20" Foreground="Gray" Height="20"/>
                                 </Button>
                                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">

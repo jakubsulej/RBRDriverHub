@@ -24,5 +24,10 @@ namespace RBRTrackFinder.Views
         {
             InitializeComponent();
         }
+
+        private void ReplyText_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            ReplyText.Text = "";
+        }
     }
 }

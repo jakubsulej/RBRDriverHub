@@ -18,5 +18,14 @@ namespace RBRDataManager.Library.DataAccess
 
             return output;
         }
+
+        public CarModel GetCarById(int carId)
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var output = sql.LoadData<CarModel, dynamic>("dbo.spCarsGetById", new { Id = carId }, "RBRDriverHubData").FirstOrDefault();
+
+            return output;
+        }
     }
 }

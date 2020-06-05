@@ -77,6 +77,16 @@
     <Build Include="dbo\Tables\Messages.sql" />
     <Build Include="dbo\Stored Procedures\spMessagesGetAll.sql" />
     <Build Include="dbo\Tables\UserRallyInfo.sql" />
+    <Build Include="dbo\Tables\TournamentCars.sql" />
+    <Build Include="dbo\Tables\TournamentTracks.sql" />
+    <Build Include="dbo\Stored Procedures\spCarsGetById.sql" />
+    <Build Include="dbo\Stored Procedures\spTracksGetById.sql" />
+    <Build Include="dbo\Stored Procedures\spTournamentInsert.sql" />
+    <Build Include="dbo\Stored Procedures\spTournamentsGetById.sql" />
+    <Build Include="dbo\Stored Procedures\spTournamentTrackInsert.sql" />
+    <Build Include="dbo\Stored Procedures\spTournamentCarInsert.sql" />
+    <Build Include="dbo\Stored Procedures\spUserRallyInfoGetById.sql" />
+    <Build Include="dbo\Stored Procedures\spMessagesGetById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RBRDriverHubData.refactorlog" />

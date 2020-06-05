@@ -33,7 +33,11 @@ namespace RBRTrackFinder
                 .PerRequest<ICarEndpoint, CarEndpoint>()
                 .PerRequest<ITrackEndpoint, TrackEndpoint>()
                 .PerRequest<IMessageEndpoint, MessageEndpoint>()
-                .PerRequest<ITournamentPostEndpoint, TournamentPostEndpoint>();
+                .PerRequest<ITournamentTrackPostEndpoint, TournamentTrackPostEndpoint>()
+                .PerRequest<ITournamentCarPostEndpoint, TournamentCarPostEndpoint>()
+                .PerRequest<ITournamentPostEndpoint, TournamentPostEndpoint>()
+                .PerRequest<IMessagePostEndpoint, MessagePostEndpoint>()
+                .PerRequest<IUserRallyInfoEndpoint, UserRallyInfoEndpoint>();
 
             _container
                 .Singleton<IWindowManager, WindowManager>()

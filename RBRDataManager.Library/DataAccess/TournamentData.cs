@@ -18,5 +18,14 @@ namespace RBRDataManager.Library.DataAccess
 
             return output;
         }
+
+        public TournamentModel GetTournamentById(int tournamentId)
+        {
+            SqlDataAccess sql = new SqlDataAccess();
+
+            var output = sql.LoadData<TournamentModel, dynamic>("dbo.spTournamentsGetById", new { TournamentId = tournamentId }, "RBRDriverHubData").FirstOrDefault();
+
+            return output;
+        }
     }
 }

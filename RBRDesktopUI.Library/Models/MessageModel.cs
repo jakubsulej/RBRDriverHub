@@ -8,19 +8,21 @@ namespace RBRDesktopUI.Library.Models
 {
     public class MessageModel
     {
-        private string _messageTopic;
-        private string _messageTopicShort;
+        private string _messageSubject;
+        private string _messageSubjectShort;
         private string _messageSender;
         private string _messageAttachment;
         private string _messageAttachmentState;
         private DateTime _messageDate;
 
-        public int Id { get; set; }
+        public string MessageId { get; set; }
 
-        public string MessageTopic
+        public string UserId { get; set; }
+
+        public string MessageSubject
         {
-            get { return _messageTopic; }
-            set { _messageTopic = value; }
+            get { return _messageSubject; }
+            set { _messageSubject = value; }
         }
 
         public string MessageContent { get; set; }
@@ -31,9 +33,9 @@ namespace RBRDesktopUI.Library.Models
             set { _messageAttachment = value; }
         }
 
-        public string MessageAdressee { get; set; }
+        public string MessageAdresseeId { get; set; }
 
-        public string MessageSender
+        public string MessageSenderId
         {
             get { return _messageSender; }
             set { _messageSender = value; }
@@ -45,21 +47,21 @@ namespace RBRDesktopUI.Library.Models
             set { _messageDate = value; }
         }
 
-        public string MessageTopicShort
+        public string MessageSubjectShort
         {
             get
             {
-                if (_messageTopic.Length > 27)
+                if (_messageSubject.Length > 27)
                 {
-                    _messageTopicShort = _messageTopic.Substring(0, 27) + "...";
+                    _messageSubjectShort = _messageSubject.Substring(0, 27) + "...";
                 }
                 else
                 {
-                    _messageTopicShort = _messageTopic;
+                    _messageSubjectShort = _messageSubject;
                 }
-                return _messageTopicShort;
+                return _messageSubjectShort;
             }
-            set { _messageTopicShort = value; }
+            set { _messageSubjectShort = value; }
         }
 
         private string _messageSenderShort;

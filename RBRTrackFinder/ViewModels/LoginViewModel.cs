@@ -13,8 +13,8 @@ namespace RBRTrackFinder.ViewModels
 {
     public class LoginViewModel : Screen
     {
-		private string _userEmail;
-		private string _password;
+		private string _userEmail = "sulejmedia@gmail.com";
+		private string _password = "Password12345.";
 		private IAPIHelper _apiHelper;
 		private IEventAggregator _events;
 
