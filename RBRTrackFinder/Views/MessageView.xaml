@@ -7,6 +7,7 @@
              xmlns:MaterialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" Background="White"
              d:DesignHeight="600" d:DesignWidth="1024">
+
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -24,17 +25,14 @@
             </Grid.RowDefinitions>
             <Grid Grid.Column="1" Grid.Row="1">
                 <StackPanel Orientation="Horizontal">
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                    <Button x:Name="RefreshMessages" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
                         <MaterialDesing:PackIcon Kind="Refresh" Width="20" Height="20"/>
                     </Button>
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                    <Button x:Name="WriteNewMessage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
                         <MaterialDesing:PackIcon Kind="Create" Width="20" Height="20"/>
                     </Button>
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                    <Button x:Name="DeleteMessage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
                         <MaterialDesing:PackIcon Kind="Delete" Width="20" Height="20"/>
-                    </Button>
-                    <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
-                        <MaterialDesing:PackIcon Kind="TickAll" Width="20" Height="20"/>
                     </Button>
                 </StackPanel>
             </Grid>
@@ -60,11 +58,14 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="3">
+            <Grid Grid.Row="2" Grid.Column="3" Visibility="{Binding MessageReplyVisibility}" Panel.ZIndex="2000" Background="White">
+                <!--{Binding MessageReplyVisibility}-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="133*"/>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="281*"/>
                         <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -73,17 +74,17 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="150"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="SemiBold" Text="{Binding Path=SelectedMessage.MessageSubject}"/>
-                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="20" FontWeight="SemiBold" Text="{Binding Path=SelectedMessage.MessageSubject}" Grid.ColumnSpan="3"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Grid.ColumnSpan="3">
                         <TextBlock Text="{Binding Path=SelectedMessage.MessageSenderId}"/>
                         <TextBlock Text=" to "/>
                         <TextBlock Text="{Binding Path=SelectedMessage.MessageAdresseeId}"/>
                     </StackPanel>
-                    <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
+                    <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
                         <Border Margin="0 20 0 20" Height="1" VerticalAlignment="Top" Background="#8888"/>
                         <TextBlock Text="{Binding Path=SelectedMessage.MessageContent}"/>
                     </StackPanel>
-                    <Border  BorderBrush="#eeeeee" CornerRadius="5" BorderThickness="1" Grid.Column="1" Grid.Row="3">
+                    <Border  BorderBrush="#eeeeee" CornerRadius="5" BorderThickness="1" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3">
                         <StackPanel Grid.Row="2">
                             <TextBox x:Name="ReplyText" BorderBrush="White" Margin="20" VerticalAlignment="Top" Height="60" AcceptsReturn="True" 
                                      TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  Focusable="True" GotKeyboardFocus="ReplyText_GotKeyboardFocus"/>
@@ -98,6 +99,37 @@
                             </StackPanel>
                         </StackPanel>
                     </Border>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="3" Background="White" Panel.ZIndex="1000" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="NewMessageSubject" FontSize="20" Grid.Row="0" Grid.Column="1" Margin="0 0 0 10"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Text="AdresseeId: "/>
+                        <TextBox x:Name="NewMessageAdresseeId" Width="400"/>
+                    </StackPanel>
+                    <TextBox x:Name="NewMessageContent" Grid.Row="2" Grid.Column="1" Margin="0 20 0 10"/>
+                    <StackPanel Grid.Column="1" Grid.Row="3" Width="300" HorizontalAlignment="Left" Margin="20 0 0 0" Orientation="Horizontal">
+                        <Button x:Name="SendNewMessage" Content="Send"/>
+                        <Button x:Name="NewMessageAttachment" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                            <MaterialDesing:PackIcon Kind="Attachment" Width="20" Foreground="Gray" Height="20"/>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">
+                            <MaterialDesing:PackIcon Kind="ArrowRightBold" Width="20" Foreground="Gray" Height="20"/>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Grid>

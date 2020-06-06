@@ -6,6 +6,6 @@ namespace RBRDesktopUI.Library.Api
 {
     public interface IUserRallyInfoEndpoint
     {
-        Task<List<UserRallyInfoModel>> GetAll();
+        Task GetLoggedInUserRallyInfo();
     }
 }

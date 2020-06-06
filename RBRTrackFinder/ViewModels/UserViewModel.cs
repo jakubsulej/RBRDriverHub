@@ -13,46 +13,73 @@ namespace RBRTrackFinder.ViewModels
     public class UserViewModel : Screen
     {
         private ILoggedInUserModel _loggedInUserModel;
+        private IUserRallyInfoModel _userRallyInfoModel;
         private IUserRallyInfoEndpoint _userRallyInfoEndpoint;
 
         private string _userLastName;
         private string _userFirstName;
+        private string _userLicence;
+        private string _totalNumberOfKm;
+        private int _enteredTournaments;
+        private int _wonTournaments;
+        private int _finnishedTournaments;
 
-        public UserViewModel(ILoggedInUserModel loggedInUserModel, IUserRallyInfoEndpoint userRallyInfoEndpoint)
+        public UserViewModel(ILoggedInUserModel loggedInUserModel, IUserRallyInfoModel userRallyInfoModel, IUserRallyInfoEndpoint userRallyInfoEndpoint)
         {
             _loggedInUserModel = loggedInUserModel;
             _userRallyInfoEndpoint = userRallyInfoEndpoint;
+            _userRallyInfoModel = userRallyInfoModel;
         }
 
-        protected override async void OnViewLoaded(object view)
+        public int FinnishedTournaments
         {
-            base.OnViewLoaded(view);
-            await LoadUserRallyInfo();
-        }
-
-        private async Task LoadUserRallyInfo()
-        {
-            var userInfo = await _userRallyInfoEndpoint.GetAll();
-            UserRallyInfo = new BindingList<UserRallyInfoModel>(userInfo);
-        }
-
-        private BindingList<UserRallyInfoModel> _userRallyInfo;
-
-        public BindingList<UserRallyInfoModel> UserRallyInfo
-        {
-            get
+            get 
             {
-                return _userRallyInfo;
+                _finnishedTournaments = _userRallyInfoModel.FinnishedTournaments;
+                return _finnishedTournaments; 
             }
-            set { _userRallyInfo = value; }
+            set { _finnishedTournaments = value; }
         }
 
-        private string _userLicence;
+
+        public int WonTournaments
+        {
+            get 
+            {
+                _wonTournaments = _userRallyInfoModel.WonTournaments;
+                return _wonTournaments; 
+            }
+            set { _wonTournaments = value; }
+        }
+
+
+        public int EnteredTournaments
+        {
+            get 
+            {
+                _enteredTournaments = _userRallyInfoModel.EnteredTournaments;
+                return _enteredTournaments; 
+            }
+            set { _enteredTournaments = value; }
+        }
+
+
+        public string TotalNumberOfKm
+        {
+            get 
+            {
+                _totalNumberOfKm = _userRallyInfoModel.TotalNumberOfKm.ToString() + " Km";
+                return _totalNumberOfKm; 
+            }
+            set { _totalNumberOfKm = value; }
+        }
+
 
         public string UserLicence
         {
             get
             {
+                _userLicence = _userRallyInfoModel.UserLicence;
                 return _userLicence;
             }
             set

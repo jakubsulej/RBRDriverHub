@@ -11,21 +11,28 @@ namespace RBRDesktopUI.Library.Api
     public class UserRallyInfoEndpoint : IUserRallyInfoEndpoint
     {
         private IAPIHelper _apiHelper;
+        private IUserRallyInfoModel _userRallyInfo;
 
-        public UserRallyInfoEndpoint(IAPIHelper apiHelper)
+        public UserRallyInfoEndpoint(IAPIHelper apiHelper, IUserRallyInfoModel userRallyInfo)
         {
             _apiHelper = apiHelper;
+            _userRallyInfo = userRallyInfo;
         }
 
-        public async Task <List<UserRallyInfoModel>> GetAll()
+        public async Task GetLoggedInUserRallyInfo()
         {
             using (HttpResponseMessage response = await _apiHelper.ApiClient.GetAsync("/api/UserRallyInfo"))
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = await response.Content.ReadAsAsync<List<UserRallyInfoModel>>();
+                    var result = await response.Content.ReadAsAsync<UserRallyInfoModel>();
 
-                    return result;
+                    _userRallyInfo.UserLicence = result.UserLicence;
+                    _userRallyInfo.EnteredTournaments = result.EnteredTournaments;
+                    _userRallyInfo.FinnishedTournaments = result.FinnishedTournaments;
+                    _userRallyInfo.TotalNumberOfKm = result.TotalNumberOfKm;
+                    _userRallyInfo.WonTournaments = result.WonTournaments;
+                    _userRallyInfo.UserId = result.UserId;
                 }
                 else
                 {

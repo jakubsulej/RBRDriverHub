@@ -18,8 +18,6 @@ namespace RBRDataManager.Library.DataAccess
 
             SqlDataAccess sql = new SqlDataAccess();
 
-            var AdresseeName = sql.LoadData<UserModel, dynamic>("dbo.spUserLookup", new { Id = adresseeId }, "RBRDriverHubData");
-
             foreach (var item in messagePost.MessagePostDetails)
             {
                 var detail = new MessagePostDBModel
@@ -30,12 +28,13 @@ namespace RBRDataManager.Library.DataAccess
                     MessageAttachment = item.MessageAttachment,
                     MessageContent = item.MessageContent,
                     MessageDate = item.MessageDate,
-                    MessageAdresseeId = item.UserId
+                    MessageAdresseeId = item.UserId,
+                    UserId = item.MessageSenderId
                 };
 
                 details.Add(detail);
 
-                //sql.SaveData("dbo.spMessageInsert", details, "RBRDriverHubData");
+                sql.SaveData("dbo.spMessageInsert", details, "RBRDriverHubData");
             }
         }
     }

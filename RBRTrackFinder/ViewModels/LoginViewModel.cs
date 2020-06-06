@@ -16,12 +16,14 @@ namespace RBRTrackFinder.ViewModels
 		private string _userEmail = "sulejmedia@gmail.com";
 		private string _password = "Password12345.";
 		private IAPIHelper _apiHelper;
+		private IUserRallyInfoEndpoint _userRallyInfo;
 		private IEventAggregator _events;
 
-		public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events)
+		public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events, IUserRallyInfoEndpoint userRallyInfo)
 		{
 			_apiHelper = apiHelper;
 			_events = events;
+			_userRallyInfo = userRallyInfo;
 		}
 
 
@@ -101,6 +103,7 @@ namespace RBRTrackFinder.ViewModels
 
 				// Capture more informations about the user
 				await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+				await _userRallyInfo.GetLoggedInUserRallyInfo();
 
 				_events.PublishOnUIThread(new LogOnEvent());
 			}

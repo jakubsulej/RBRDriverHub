@@ -87,6 +87,7 @@
     <Build Include="dbo\Stored Procedures\spTournamentCarInsert.sql" />
     <Build Include="dbo\Stored Procedures\spUserRallyInfoGetById.sql" />
     <Build Include="dbo\Stored Procedures\spMessagesGetById.sql" />
+    <Build Include="dbo\Stored Procedures\spMessageInsert.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="RBRDriverHubData.refactorlog" />

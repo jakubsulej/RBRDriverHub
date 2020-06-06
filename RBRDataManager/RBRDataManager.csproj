@@ -222,6 +222,7 @@
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\MessagePostController.cs" />
     <Compile Include="Controllers\TournamentCarPostController.cs" />
     <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="Controllers\TournamentPostController.cs" />

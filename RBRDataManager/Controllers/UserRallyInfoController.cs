@@ -14,7 +14,7 @@ namespace RBRDataManager.Controllers
 
     public class UserRallyInfoController : ApiController
     {
-        public List<UserRallyInfoModel> GetById()
+        public UserRallyInfoModel GetById()
         {
             string userId = RequestContext.Principal.Identity.GetUserId();
             UserRallyInfoData data = new UserRallyInfoData();

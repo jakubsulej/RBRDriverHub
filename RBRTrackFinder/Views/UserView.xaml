@@ -10,38 +10,81 @@
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="70"/>
-                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="280"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="160"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="110"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Grid.Column="1">
-                <MaterialDesing:PackIcon Kind="User" Width="160" Height="160"/>
+            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                <Image Source="/Media/Images/NoUserImage.png" HorizontalAlignment="Right" Margin="0 0 20 0"/>
             </Grid>
-            <Grid Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="28" x:Name="UserFirstName"/>
-                        <TextBlock Margin="10 0 0 0" FontSize="28" x:Name="UserLastName"/>
-                    </StackPanel>
-                    <TextBlock FontSize="20" x:Name="UserEmail"/>
-                </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" Margin="20 0 20 0">
+                <TextBlock x:Name="UserFirstName" VerticalAlignment="Bottom" FontSize="24"/>
+                <TextBlock x:Name="UserLastName" VerticalAlignment="Bottom" FontSize="24"/>                
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="2" Margin="20">
+                <TextBlock x:Name="UserEmail" VerticalAlignment="Top"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" Margin="20" Orientation="Horizontal">
+                <TextBlock Text="Licence: "/>
+                <TextBlock x:Name="UserLicence"/>
+            </StackPanel>
+            <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Margin="0 30 0 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Margin="14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <MaterialDesing:PackIcon Kind="Road" Foreground="Gray" Width="25" Height="25"/>
+                            <TextBlock x:Name="TotalNumberOfKm" FontWeight="Light" FontSize="18" Margin="10 0 0 0 "/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="Total Covered distance" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <MaterialDesing:PackIcon Kind="Trophy" Foreground="Gray" Width="25" Height="25"/>
+                            <TextBlock x:Name="WonTournaments" FontWeight="Light" FontSize="18" Margin="10 0 0 0 "/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="Number of won tournaments" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="2" Margin="14">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <MaterialDesing:PackIcon Kind="Steering" Foreground="Gray" Width="25" Height="25"/>
+                            <TextBlock x:Name="EnteredTournaments" FontWeight="Light" FontSize="18" Margin="10 0 0 0 "/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="Entered Tournaments" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-                <!--<ListBox x:Name="UserRallyInfo" Grid.Row="1" Grid.Column="1" Margin="10">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding UserLicence}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>-->
-                
+
+            <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="400"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

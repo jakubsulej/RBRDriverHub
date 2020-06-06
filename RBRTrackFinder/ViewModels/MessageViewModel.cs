@@ -20,11 +20,15 @@ namespace RBRTrackFinder.ViewModels
         private MessageDBModel _selectedMessage;
         private BindingList<MessageDBModel> _messages;
 
-        private string _userId;
+        private string _messageReplyVisibility;
         private string _replyText;
         private string _messageId;
         private string _messageAttachment;
         private bool _canReply;
+        private string _newMessageSubject;
+        private string _newMessageAdresseeId;
+        private string _newMessageContent;
+        private string _newMessageAttachment;
 
         private BindingList<MessageItemModel> _messageItem = new BindingList<MessageItemModel>();
 
@@ -43,10 +47,7 @@ namespace RBRTrackFinder.ViewModels
 
         public BindingList<MessageDBModel> Messages
         {
-            get 
-            {
-                return _messages; 
-            }
+            get { return _messages; }
             set
             {
                 _messages = value;
@@ -63,29 +64,61 @@ namespace RBRTrackFinder.ViewModels
             set { _messageData = value; }
         }
 
-        public BindingList<MessageItemModel> MessageItem
-        {
-            get { return _messageItem; }
-            set 
-            { 
-                _messageItem = value;
-                NotifyOfPropertyChange(() => MessageItem);
-            }
-        }
-
         private async Task LoadMessages()
         {
             var messageList = await _messageEndpoint.GetAll();
             Messages = new BindingList<MessageDBModel>(messageList);
         }
 
+        public string MessageReplyVisibility
+        {
+            get 
+            {
+                if (_selectedMessage != null)
+                {
+                    _messageReplyVisibility = "Visible";
+                }
+                else
+                {
+                    _messageReplyVisibility = "Collapsed";
+                }
+                return _messageReplyVisibility; 
+            }
+            set 
+            { 
+                _messageReplyVisibility = value;
+                NotifyOfPropertyChange(() => MessageReplyVisibility);
+            }
+        }
+
+        public async Task RefreshMessages()
+        {
+            await LoadMessages();
+        }
+
+        public void WriteNewMessage()
+        {
+            _selectedMessage = null;
+            NotifyOfPropertyChange(() => MessageReplyVisibility);
+            NotifyOfPropertyChange(() => SelectedMessage);
+        }
+
+        public void DeteleMessage()
+        {
+
+        }
+
         public MessageDBModel SelectedMessage
         {
-            get { return _selectedMessage; }
+            get 
+            {
+                return _selectedMessage; 
+            }
             set 
             { 
                 _selectedMessage = value;
                 NotifyOfPropertyChange(() => SelectedMessage);
+                NotifyOfPropertyChange(() => MessageReplyVisibility);
             }
         }
 
@@ -112,6 +145,11 @@ namespace RBRTrackFinder.ViewModels
             await PostMessage();
         }
 
+        public async Task SendNewMessage()
+        {
+            await PostNewMessage();
+        }
+
         public async Task PostMessage()
         {
             MessagePostModel messagePost = new MessagePostModel();
@@ -124,10 +162,54 @@ namespace RBRTrackFinder.ViewModels
                 MessageSenderId = _loggedInUser.Id,
                 MessageAttachment = MessageAttachment,
                 MessageAdresseeId = SelectedMessage.MessageSenderId,
-                MessageId = MessageId
+                MessageId = MessageId,
+                UserId = SelectedMessage.UserId
             });
 
             await _messagePostEndpoint.PostMessage(messagePost);
+        }
+
+        public async Task PostNewMessage()
+        {
+            MessagePostModel messagePost = new MessagePostModel();
+
+            messagePost.MessagePostDetails.Add(new MessagePostDetailModel
+            {
+                MessageContent = NewMessageContent,
+                MessageSubject = NewMessageSubject,
+                MessageDate = DateTime.UtcNow,
+                MessageAttachment = NewMessageAttachment,
+                MessageAdresseeId = NewMessageAdresseeId,
+                MessageSenderId = _loggedInUser.Id,
+                MessageId = MessageId,
+                UserId = NewMessageAdresseeId
+            }) ;
+
+            await _messagePostEndpoint.PostMessage(messagePost);
+        }
+
+        public string NewMessageSubject
+        {
+            get { return _newMessageSubject; }
+            set { _newMessageSubject = value; }
+        }
+
+        public string NewMessageAdresseeId
+        {
+            get { return _newMessageAdresseeId; }
+            set { _newMessageAdresseeId = value; }
+        }
+
+        public string NewMessageContent
+        {
+            get { return _newMessageContent; }
+            set { _newMessageContent = value; }
+        }
+
+        public string NewMessageAttachment
+        {
+            get { return _newMessageAttachment; }
+            set { _newMessageAttachment = value; }
         }
 
         public string MessageId
@@ -149,19 +231,6 @@ namespace RBRTrackFinder.ViewModels
             set 
             { 
                 _messageAttachment = value; 
-            }
-        }
-
-        public string UserId
-        {
-            get
-            {
-                _userId = _loggedInUser.Id;
-                return _userId;
-            }
-            set
-            {
-                _userId = value;
             }
         }
 

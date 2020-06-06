@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RBRDesktopUI.Library.Models
 {
-    public class UserRallyInfoModel
+    public class UserRallyInfoModel : IUserRallyInfoModel
     {
         public string UserId { get; set; }
         public string UserLicence { get; set; }

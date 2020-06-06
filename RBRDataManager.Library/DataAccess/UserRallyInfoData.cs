@@ -10,12 +10,11 @@ namespace RBRDataManager.Library.DataAccess
 {
     public class UserRallyInfoData
     {
-        public List<UserRallyInfoModel> GetUserRallyInfoById(string userId)
+        public UserRallyInfoModel GetUserRallyInfoById(string userId)
         {
-
             SqlDataAccess sql = new SqlDataAccess();
 
-            var output = sql.LoadData<UserRallyInfoModel, dynamic>("dbo.spUserRallyInfoGetById", new { Id = userId }, "RBRDriverHubData");
+            var output = sql.LoadData<UserRallyInfoModel, dynamic>("dbo.spUserRallyInfoGetById", new { Id = userId }, "RBRDriverHubData").FirstOrDefault();
 
             return output;
         }

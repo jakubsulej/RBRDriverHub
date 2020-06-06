@@ -70,6 +70,7 @@
     <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\CarTournamentItemModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />
+    <Compile Include="Models\IUserRallyInfoModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
     <Compile Include="Models\MessageDBModel.cs" />
     <Compile Include="Models\MessageItemModel.cs" />
