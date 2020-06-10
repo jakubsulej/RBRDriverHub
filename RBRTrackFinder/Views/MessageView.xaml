@@ -115,12 +115,12 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="NewMessageSubject" FontSize="20" Grid.Row="0" Grid.Column="1" Margin="0 0 0 10"/>
+                    <TextBox x:Name="NewMessageSubject" FontSize="20" Grid.Row="0" Grid.Column="1" Margin="0 0 0 10" Focusable="True" GotKeyboardFocus="NewMessageSubject_GotKeyboardFocus"/>
                     <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center" Text="AdresseeId: "/>
                         <TextBox x:Name="NewMessageAdresseeId" Width="400"/>
                     </StackPanel>
-                    <TextBox x:Name="NewMessageContent" Grid.Row="2" Grid.Column="1" Margin="0 20 0 10"/>
+                    <TextBox x:Name="NewMessageContent" Grid.Row="2" Grid.Column="1" Margin="0 20 0 10" Focusable="True" GotKeyboardFocus="NewMessageContent_GotKeyboardFocus"/>
                     <StackPanel Grid.Column="1" Grid.Row="3" Width="300" HorizontalAlignment="Left" Margin="20 0 0 0" Orientation="Horizontal">
                         <Button x:Name="SendNewMessage" Content="Send"/>
                         <Button x:Name="NewMessageAttachment" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="5" HorizontalAlignment="Left" Width="20" Height="20" Background="Transparent" BorderBrush="{x:Null}" Foreground="Black">

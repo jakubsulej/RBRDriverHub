@@ -29,5 +29,15 @@ namespace RBRTrackFinder.Views
         {
             ReplyText.Text = "";
         }
+
+        private void NewMessageSubject_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            NewMessageSubject.Text = "";
+        }
+
+        private void NewMessageContent_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            NewMessageContent.Text = "";
+        }
     }
 }

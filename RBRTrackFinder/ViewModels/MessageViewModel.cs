@@ -190,8 +190,19 @@ namespace RBRTrackFinder.ViewModels
 
         public string NewMessageSubject
         {
-            get { return _newMessageSubject; }
-            set { _newMessageSubject = value; }
+            get 
+            { 
+                if (_newMessageSubject == null)
+                {
+                    _newMessageSubject = "Type a new message subject...";
+                }
+                return _newMessageSubject; 
+            }
+            set 
+            { 
+                _newMessageSubject = value;
+                NotifyOfPropertyChange(() => NewMessageSubject);
+            }
         }
 
         public string NewMessageAdresseeId
@@ -202,7 +213,14 @@ namespace RBRTrackFinder.ViewModels
 
         public string NewMessageContent
         {
-            get { return _newMessageContent; }
+            get 
+            { 
+                if (_newMessageContent == null)
+                {
+                    _newMessageContent = "Write here a new message...";
+                }
+                return _newMessageContent; 
+            }
             set { _newMessageContent = value; }
         }
 

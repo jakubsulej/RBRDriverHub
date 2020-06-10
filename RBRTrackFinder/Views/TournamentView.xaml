@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
@@ -23,16 +23,39 @@
         </Grid.RowDefinitions>
 
         <!-- Row 3 Description-->
-        <StackPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" Orientation="Vertical">
-            <TextBox Margin="0 0 0 20" Width="200" x:Name="TournamentName" Focusable="True" GotKeyboardFocus="TournamentName_GotKeyboardFocus"/>
-            <TextBox x:Name="TournamentDescription" Focusable="True" GotKeyboardFocus="TournamentDescription_GotKeyboardFocus"/>
-            <TextBlock x:Name="SubTotalKm" Text="0.0 km"/>
-            <DatePicker x:Name="TorunamentDatePicker" SelectedDate="{Binding StartDate}" >
-            </DatePicker>
-        </StackPanel>
+        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="160"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Total tournament length: "/>
+                    <TextBlock x:Name="SubTotalKm" Text="0.0"/>
+                    <TextBlock Text=" km"/>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="0" Grid.Row="1">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Margin="0 7 0 0" Text="Select tournament start date: "/>
+                    <DatePicker Width="100" x:Name="TorunamentDatePicker" SelectedDate="{Binding StartDate}"></DatePicker>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" Margin="20">
+                <TextBox x:Name="TournamentName" Focusable="True" GotKeyboardFocus="TournamentName_GotKeyboardFocus"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Margin="20">
+                <TextBox x:Name="TournamentDescription" Focusable="True" GotKeyboardFocus="TournamentDescription_GotKeyboardFocus"/>
+            </Grid>
+        </Grid>
         
         <!--Row 2-->
-        <ListBox x:Name="Cars" Grid.Row="1" Grid.Column="1" Margin="10" SelectedItem="{Binding SelectedCar}" SelectionMode="Single">
+        <ListBox x:Name="Cars" Grid.Row="1" Grid.Column="1" Margin="20 0 0 10" SelectedItem="{Binding SelectedCar}" SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -63,8 +86,8 @@
                             <ColumnDefinition Width="70"/>
                             <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Car.CarName}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Car.CarBrand}"/>
+                        <TextBlock Grid.Column="0" Text="{Binding Car.CarBrand}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Car.CarName}"/>
                         <TextBlock Grid.Column="2" Text="{Binding Car.CarClass}"/>
                     </Grid>
                 </DataTemplate>
@@ -72,7 +95,7 @@
         </ListBox>
 
         <!--Row 3-->
-        <ListBox x:Name="Tracks" Grid.Row="2" Grid.Column="1" Margin="10" SelectedItem="{Binding SelectedTrack}" SelectionMode="Single">
+        <ListBox x:Name="Tracks" Grid.Row="2" Margin="20 10 0 0" Grid.Column="1" SelectedItem="{Binding SelectedTrack}" SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

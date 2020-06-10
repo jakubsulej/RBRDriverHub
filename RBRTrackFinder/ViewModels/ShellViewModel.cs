@@ -29,12 +29,13 @@ namespace RBRTrackFinder.ViewModels
 		private MessageViewModel _messageVM;
 		private SimpleContainer _container;
 		private UserViewModel _userVM;
+		private RegisterViewModel _registerVM;
 		private ILoggedInUserModel _loggedInUserModel;
 		private IAPIHelper _apiHelper;
 
 		public ShellViewModel(IEventAggregator events, LoginViewModel loginVM, MasterViewModel masterVM, 
-			TournamentViewModel tournamentVM, UserViewModel userVM, TrackViewModel trackVM, MessageViewModel messageVM, SimpleContainer container,
-			ILoggedInUserModel loggedInUserModel, IAPIHelper apiHelper)
+			TournamentViewModel tournamentVM, UserViewModel userVM, TrackViewModel trackVM, MessageViewModel messageVM,
+			RegisterViewModel registerVM, SimpleContainer container, ILoggedInUserModel loggedInUserModel, IAPIHelper apiHelper)
 		{
 			_events = events;
 			_container = container;
@@ -44,6 +45,7 @@ namespace RBRTrackFinder.ViewModels
 			_trackVM = trackVM;
 			_messageVM = messageVM;
 			_userVM = userVM;
+			_registerVM = registerVM;
 			_loggedInUserModel = loggedInUserModel;
 			_apiHelper = apiHelper;
 
@@ -58,12 +60,26 @@ namespace RBRTrackFinder.ViewModels
 
 		public void LoadUserPage()
 		{
-			ActivateItem(_userVM);
+			if (_loggedInUserModel.Id != null)
+			{
+				ActivateItem(_userVM);
+			}
+			else
+			{
+				ActivateItem(_loginVM);
+			}
 		}
 
 		public void LoadMessagePage()
 		{
-			ActivateItem(_messageVM);
+			if(_loggedInUserModel.Id != null)
+			{
+				ActivateItem(_messageVM);
+			}
+			else
+			{
+				ActivateItem(_loginVM);
+			}
 		}
 
 		public void LoadDownloadPage()
@@ -74,8 +90,15 @@ namespace RBRTrackFinder.ViewModels
 
 		public void LoadTournamentPage()
 		{
-			ActivateItem(_tournamentVM);
-			_tournamentVM = _container.GetInstance<TournamentViewModel>();
+			if(_loggedInUserModel.Id != null)
+			{
+				ActivateItem(_tournamentVM);
+				_tournamentVM = _container.GetInstance<TournamentViewModel>();
+			}
+			else
+			{
+				ActivateItem(_loginVM);
+			}
 		}
 
 		public void LoadForumPage()
@@ -94,6 +117,39 @@ namespace RBRTrackFinder.ViewModels
 				ActivateItem(_loginVM);
 			}
 		}
+
+		public void Logout()
+		{
+
+		}
+
+		private string _loginButtonVisibility;
+
+		public string LoginButtonVisibility
+		{
+			get 
+			{ 
+				if(_loggedInUserModel.Id != null)
+				{
+					_loginButtonVisibility = "Collapsed";
+				}
+				else
+				{
+					_loginButtonVisibility = "Visible";
+				}
+				return _loginButtonVisibility; 
+			}
+			set { _loginButtonVisibility = value; }
+		}
+
+		private string _logoutButtonVisibility;
+
+		public string LogoutButtonVisibility
+		{
+			get { return _logoutButtonVisibility; }
+			set { _logoutButtonVisibility = value; }
+		}
+
 
 		public string FirstName
 		{

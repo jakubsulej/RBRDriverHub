@@ -41,20 +41,22 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="25"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="First Name:"/>
                 <TextBlock Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="Last Name:"/>
                 <TextBlock Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Text="Email:"/>
                 <TextBlock Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Text="Password:"/>
-                <TextBlock Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" Text="Confirm Password:"/>
-                <TextBox Margin="10" Grid.Row="0" Grid.Column="1"/>
-                <TextBox Margin="10" Grid.Row="1" Grid.Column="1"/>
-                <TextBox Margin="10" Grid.Row="2" Grid.Column="1"/>
-                <TextBox Margin="10" Grid.Row="3" Grid.Column="1"/>
-                <TextBox Margin="10" Grid.Row="4" Grid.Column="1"/>
-                <Button Content="Register" Grid.ColumnSpan="2" Grid.Row="5" Width="120"/>
+                <TextBlock Margin="0 0 10 0" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" Text="Confirm Password:"/>
+                <TextBox x:Name="FirstName" Margin="10" Grid.Row="0" Grid.Column="1"/>
+                <TextBox x:Name="LastName" Margin="10" Grid.Row="1" Grid.Column="1"/>
+                <TextBox x:Name="EmailAddress" Margin="10" Grid.Row="2" Grid.Column="1"/>
+                <TextBox x:Name="Password" Margin="10" Grid.Row="3" Grid.Column="1"/>
+                <TextBox x:Name="ConfirmPassword" Margin="10 0 10 0" Grid.Row="5" Grid.Column="1"/>
+                <Button x:Name="Register" Content="Register" Grid.ColumnSpan="2" Grid.Row="6" Width="120"/>
+                <TextBlock Visibility="{Binding PasswordErrorVisibility}" x:Name="PasswordError" FontSize="10" Foreground="Red" Text="Password does not match" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="4"/>
             </Grid>
         </Grid>
     </Grid>

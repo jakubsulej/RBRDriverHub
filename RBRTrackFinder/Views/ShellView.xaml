@@ -85,7 +85,7 @@
             </StackPanel>
             <MaterialDesing:PopupBox HorizontalAlignment="Right" Margin="10" StaysOpen="False">
                 <StackPanel Orientation="Vertical" Width="150">
-                    <Button Content="Login">
+                    <Button Content="Login" Visibility="{Binding LoginButtonVisibility}">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <cal:ActionMessage MethodName="LoadLoginPage">
@@ -94,9 +94,18 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
+                    <Button Content="Logout" Visibility="{Binding LogoutButtonVisibility}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="Logout">
+                                    <!--<cal:Parameter Value="{Binding ElementName=Name, Path=Text}" />-->
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
                     <Button Content="Settings"/>
                     <Button Content="User Profile"/>
-                    <Button Content="Help"/>
+                    
                 </StackPanel>
             </MaterialDesing:PopupBox>
         </Grid>

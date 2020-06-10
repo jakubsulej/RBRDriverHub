@@ -77,6 +77,7 @@
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\MessagePostDetailModel.cs" />
     <Compile Include="Models\MessagePostModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\TournamentCarPostDetailModel.cs" />
     <Compile Include="Models\TournamentCarPostModel.cs" />
     <Compile Include="Models\TournamentPostDetailModel.cs" />
