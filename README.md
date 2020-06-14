@@ -2,11 +2,17 @@
 It is designed using the MVVM pattern, which is supported by the CaliburnMicro framework. The UI library is based on WPF (XAML), with an additional material design library for styling and controls. User authorization and profile creation are based on the Entity framework. 
 The UI library connects to relational SQL databases using web API. Additional design patterns which were used: dependency injection, singleton (only for logged in user data).</p>
 
+<br>
+
 <h2><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDataManager">RBR DataManager</a></h2>
 <p>A .NET web API library, which connects the SQL Database with the UI. It contains the Entity framework with its database for user operations, like login, register, and others. For every database operation, there are web API controllers, which initialize operations from the DataManager.Library class to a web server.</p>
 
+<br>
+
 <h2><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDataManager.Library">RBR DataManager.Library</a></h2>
-<p>The DataManager.Library is a data access type class with database logic. It contains a connection with the database and all the logic that helps web API controllers making operations.</p>
+<p>The DataManager.Library is a data access type class with database logic. It contains a connection with the database and all the logic that helps web API controllers making operations. In the library class, there are models, that keep the property for the web API operations. For each operation, there is one data model class. For easy managing through all the classes, the naming convention determinates that for database connection the names contain DB and for the other operations stays Models for List of models and ModelDetails for the properties.</p>
+
+<br>
 
 <h2><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRTrackFinder">RBRDesktopUI</a></h2>
 <p>A user interface class, which has all the logic behind display data and get data from the user. It is designed following the MVVM pattern to easily manage the solution and make the application more flexible in the future. Due to a micro ORM - CaliburnMicro implementation of the MVVM design pattern was easy and efficient.
@@ -46,7 +52,9 @@ Because only logged in users can create new tournaments, it allows saving userId
 <p>A form that allows the user to insert data and register to an application as a new member. The register form checks if the email address is currently in the database, before registering a new person. For a safety reason, it also checks if the password field is equal to a confirm password field.</p>
 
 <h3><a href="https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/Bootstrapper.cs">Bootstrapper class</a></h3>
-<p>An MVVM caliburnMicro class, which is a program.cs type class, necessary for executable methods and </p>
+<p>An MVVM caliburnMicro class, which is a program.cs type class, necessary for executable methods and containers. There are container pattern objects with different types of access. Implemented container with a per request access, that helps the dependency injection execute one per every application request. The other type container in the bootstrapper class is a Singleton type, which is globally the same function for the whole application.</p>
+
+<br>
 
 <h2><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDesktopUI.Library">RBRDesktopUI.Library</a></h2>
 <p>The in-between class for DataManager and user interface, which holds data models and API endpoints.</p>
@@ -58,11 +66,17 @@ It also contains the ApiHelper class, which is generally a class for data operat
 <h3><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDesktopUI.Library/Models">Models</a></h3>
 <p>Every operation needs to have data models, one for each way of data operations. There are also multiple model classes with only list property of other classes. It is designed to easily send data using the list of Details classes, which holds all the information.</p>
 
+<br>
+
 <h2><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDriverHubData">RBRDriverHubData</a></h2>
 <p>A SQL database for the solution, where is stored all the data needed for the application to work. For easy managing the solution, there is implemented a Stored procedure with all the SQL logic needed to be initialized from DataManager.Library. class. Some of the tables in the database are relational, which saves the space needed for storage.</p>
 
+<br>
+
 <h2>Swagger</h2>
 <p>With the swagger framework ecosystem, testing the web API controllers was easier and more efficient. To access swagger, there needs to be IIS and Debug running, then after the IP number, the access path in the browser should be <IpNumber>/swagger.</p>
+
+<br>
 
 <h2>CaliburnMicro</h2>
 <p>A micro ORM software that helps to map the MVVM pattern by exact file naming with its documentation.</p>
