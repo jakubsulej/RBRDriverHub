@@ -68,7 +68,8 @@ Because only logged in users can create new tournaments, it allows saving userId
 
 <br>
 
-<h2><a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDesktopUI.Library">RBRDesktopUI.Library</a></h2>
+<h2>RBRDesktopUI.Library</h2>
+<a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDesktopUI.Library">Click here to see code</a>
 <p>The in-between class for DataManager and user interface, which holds data models and API endpoints.</p>
 
 <h3>API Endpoints</h3>
