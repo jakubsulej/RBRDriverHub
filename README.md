@@ -66,6 +66,10 @@ The UI library connects to relational SQL databases using web API. Additional de
 
 <br>
 
+![grab-landing-page](https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/Media/Gif/overview.gif)
+
+<br>
+
 <h2>RBR DataManager</h2>
 <a href="https://github.com/jakubsulej/RBRDriverHub/tree/master/RBRDataManager">Click here to see code</a>
 <p>A .NET web API library, which connects the SQL Database with the UI. It contains the Entity framework with its database for user operations, like login, register, and others. For every database operation, there are web API controllers, which initialize operations from the DataManager.Library class to a web server.</p>
@@ -96,15 +100,29 @@ Because only logged in users can create new tournaments, it allows saving userId
 
 <p>*Removing selected values from the list is currently not available. On a TODO list.</p>
 
+<br>
+
+![grab-landing-page](https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/Media/Gif/tournament.gif)
+
+<br>
+
 <h3>LoginViewModel</h3>
 <a href="https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/ViewModels/LoginViewModel.cs">Click here to see code</a>
 <p>User authorization is done by using the Entity framework and directly connecting to the database from web API. The successful logging in raises a bearer type token, necessary for further actions in the application. It also saves logged in user data to a Singleton user model, needed for other operations in the application.</p>
+
+![grab-landing-page](https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/Media/Gif/rbrLogin.gif)
+
+<br>
 
 <h3>MessageViewModel</h3>
 <a href="https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/ViewModels/MessageViewModel.cs">Click here to see code</a>
 <p>The solution allows users to send and receive messages or attachments. It is designed to let users connect and save messages in the database. Application loads all the messages, which were sent to a logged user. It can also reply to received messages, change message subjects.</p>
 
 <p>*Selecting the addressee user from the list is on a TODO list.</p>
+
+![grab-landing-page](https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/Media/Gif/messages.gif)
+
+<br>
 
 <h3>TrackViewModel</h3>
 <a href="https://github.com/jakubsulej/RBRDriverHub/blob/master/RBRTrackFinder/ViewModels/TrackViewModel.cs">Click here to see code</a>
