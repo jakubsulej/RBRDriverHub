@@ -2,6 +2,13 @@
 It is designed using the MVVM pattern, which is supported by the CaliburnMicro framework. The UI library is based on WPF (XAML), with an additional material design library for styling and controls. User authorization and profile creation are based on the Entity framework. 
 The UI library connects to relational SQL databases using web API. Additional design patterns which were used: dependency injection, singleton (only for logged in user data).</p>
 
+<ul>
+  <li>
+    <a href="#user-content-rbr-datamanager">RBR Data Manager</a>
+  </li>
+</ul>
+    
+
 <br>
 
 <h2>RBR DataManager</h2>
