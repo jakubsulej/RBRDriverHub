@@ -13,7 +13,7 @@ The UI library connects to relational SQL databases using web API. Additional de
   <li>
     <a href="#rbrdesktopui">RBR Desktop UI</a>
   </li>
-  <ul>
+    <ul>
     <li>
       <a href="#shellviewmodel">Shell View Model</a>
     </li>
@@ -40,8 +40,8 @@ The UI library connects to relational SQL databases using web API. Additional de
     </li>
     <li>
       <a href="#bootstrapper-class">Bootstrapper class</a>
-    </li
-  </ul>
+    </li>
+    </ul>
   <li>
     <a href="#rbrdesktopuilibrary">RBRDestopUI.Library</a>
   </li>
