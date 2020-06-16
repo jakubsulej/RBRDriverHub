@@ -85,7 +85,7 @@
             </StackPanel>
             <MaterialDesing:PopupBox HorizontalAlignment="Right" Margin="10" StaysOpen="False">
                 <StackPanel Orientation="Vertical" Width="150">
-                    <Button Content="Login" Visibility="{Binding LoginButtonVisibility}">
+                    <Button Content="Login">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <cal:ActionMessage MethodName="LoadLoginPage">
@@ -94,7 +94,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button Content="Logout" Visibility="{Binding LogoutButtonVisibility}">
+                    <Button Content="Logout">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <cal:ActionMessage MethodName="Logout">
@@ -153,8 +153,8 @@
             <Button x:Name="LoadTournamentPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="4" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="TrophyVariant" Width="30" Height="30"/>
             </Button>
-            <Button x:Name="LoadForumPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="5" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
-                <MaterialDesing:PackIcon Kind="Forum" Width="30" Height="30"/>
+            <Button x:Name="LoadRegisterPage" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="5" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
+                <MaterialDesing:PackIcon Kind="Register" Width="30" Height="30"/>
             </Button>
             <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="6" Margin="10" HorizontalAlignment="Right" Width="30" Height="30" Background="Transparent" BorderBrush="{x:Null}" Foreground="White">
                 <MaterialDesing:PackIcon Kind="Settings" Width="30" Height="30"/>

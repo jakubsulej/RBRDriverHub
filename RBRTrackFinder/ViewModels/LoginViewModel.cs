@@ -18,12 +18,14 @@ namespace RBRTrackFinder.ViewModels
 		private IAPIHelper _apiHelper;
 		private IUserRallyInfoEndpoint _userRallyInfo;
 		private IEventAggregator _events;
+		private RegisterViewModel _registerVM;
 
-		public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events, IUserRallyInfoEndpoint userRallyInfo)
+		public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events, IUserRallyInfoEndpoint userRallyInfo, RegisterViewModel registerVM)
 		{
 			_apiHelper = apiHelper;
 			_events = events;
 			_userRallyInfo = userRallyInfo;
+			_registerVM = registerVM;
 		}
 
 
@@ -111,6 +113,11 @@ namespace RBRTrackFinder.ViewModels
 			{
 				ErrorMessage = ex.Message;
 			}
+		}
+
+		public void RegisterButton()
+		{
+			
 		}
 	}
 }

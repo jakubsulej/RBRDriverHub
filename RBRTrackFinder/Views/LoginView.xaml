@@ -45,14 +45,14 @@
             </Button>
             
             <!--Row 6 Register link line-->
-            <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
+            <!--<StackPanel Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" Text="You dont have a user profile? "/>
                 <Button Background="{x:Null}" FontSize="12" FontWeight="Normal" BorderBrush="{x:Null}" Foreground="Blue" x:Name="RegisterButton">
                     <TextBlock TextDecorations="Underline">
                         Register Here!
                     </TextBlock>
                 </Button>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
     </Grid>
 </UserControl>

@@ -101,16 +101,16 @@ namespace RBRTrackFinder.ViewModels
 			}
 		}
 
-		public void LoadForumPage()
+		public void LoadRegisterPage()
 		{
-			
+			ActivateItem(_registerVM);
 		}
 
 		public void LoadLoginPage()
 		{
 			if (_loginVM.IsActive)
 			{
-				MessageBox.Show("Is currently active!");
+
 			}
 			else
 			{
@@ -118,38 +118,23 @@ namespace RBRTrackFinder.ViewModels
 			}
 		}
 
+
 		public void Logout()
 		{
 
 		}
 
-		private string _loginButtonVisibility;
+		private bool _canLogin;
 
-		public string LoginButtonVisibility
+		public bool CanLogin
 		{
 			get 
-			{ 
-				if(_loggedInUserModel.Id != null)
-				{
-					_loginButtonVisibility = "Collapsed";
-				}
-				else
-				{
-					_loginButtonVisibility = "Visible";
-				}
-				return _loginButtonVisibility; 
+			{
+				_canLogin = false;
+				return _canLogin; 
 			}
-			set { _loginButtonVisibility = value; }
+			set { _canLogin = value; }
 		}
-
-		private string _logoutButtonVisibility;
-
-		public string LogoutButtonVisibility
-		{
-			get { return _logoutButtonVisibility; }
-			set { _logoutButtonVisibility = value; }
-		}
-
 
 		public string FirstName
 		{

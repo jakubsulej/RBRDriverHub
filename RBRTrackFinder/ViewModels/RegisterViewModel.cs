@@ -18,7 +18,7 @@ namespace RBRTrackFinder.ViewModels
 
 		public void Register()
 		{
-			NotifyOfPropertyChange(() => PasswordErrorVisibility);
+			NotifyOfPropertyChange(() => ConfirmPasswordErrorVisibility);
 		}
 
 		private string _firstName;
@@ -49,13 +49,29 @@ namespace RBRTrackFinder.ViewModels
 
 		public string Password
 		{
-			get { return _password; }
+			get 
+			{ 
+				return _password; 
+			}
 			set 
 			{
 				_password = value;
-				NotifyOfPropertyChange(() => PasswordErrorVisibility);
+				NotifyOfPropertyChange(() => ConfirmPasswordErrorVisibility);
 			}
 		}
+
+		private string _passwordErrorVisibility;
+
+		public string PasswordErrorVisibility
+		{
+			get 
+			{ 
+
+				return _passwordErrorVisibility; 
+			}
+			set { _passwordErrorVisibility = value; }
+		}
+
 
 		private string _confirmPassword;
 
@@ -65,32 +81,32 @@ namespace RBRTrackFinder.ViewModels
 			set 
 			{ 
 				_confirmPassword = value;
-				NotifyOfPropertyChange(() => PasswordErrorVisibility);
+				NotifyOfPropertyChange(() => ConfirmPasswordErrorVisibility);
 			}
 		}
 
-		private string _passwordErrorVisibility;
+		private string _confirmPasswordErrorVisibility;
 
-		public string PasswordErrorVisibility
+		public string ConfirmPasswordErrorVisibility
 		{
 			get 
 			{
-				_passwordErrorVisibility = "Hidden";
+				_confirmPasswordErrorVisibility = "Hidden";
 
 				if (_password != _confirmPassword)
 				{
-					_passwordErrorVisibility = "Visible";
+					_confirmPasswordErrorVisibility = "Visible";
 				}
 				else
 				{
-					_passwordErrorVisibility = "Hidden";
+					_confirmPasswordErrorVisibility = "Hidden";
 				}
-				return _passwordErrorVisibility; 
+				return _confirmPasswordErrorVisibility; 
 			}
 			set 
 			{ 
-				_passwordErrorVisibility = value;
-				NotifyOfPropertyChange(() => PasswordErrorVisibility);
+				_confirmPasswordErrorVisibility = value;
+				NotifyOfPropertyChange(() => ConfirmPasswordErrorVisibility);
 			}
 		}
 
