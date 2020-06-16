@@ -4,10 +4,50 @@ The UI library connects to relational SQL databases using web API. Additional de
 
 <ul>
   <li>
-    <a href="#user-content-rbr-datamanager">RBR Data Manager</a>
+    <a href="#rbr-datamanager">RBR Data Manager</a>
   </li>
+  <li>
+    <a href="#rbr-datamanagerlibrary">RBR Data Manager.Library</a>
+  </li>
+  <li>
+    <a href="#rbrdesktopui">RBR Desktop UI</a>
+  </li>
+  <ul>
+    <li>
+      <a href="#shellviewmodel">Shell View Model</a>
+    </li>
+    <li>
+      <a href="#tournamentviewmodel">Tournament View Model</a>
+    </li>
+    <li>
+      <a href="#loginviewmodel">Login View Model</a>
+    </li>
+    <li>
+      <a href="#messageviewmodel">Message View Model</a>
+    </li>
+    <li>
+      <a href="#trackviewmodel">Track View Model</a>
+    </li>
+    <li>
+      <a href="#userviewmodel">User View Model</a>
+    </li>
+    <li>
+      <a href="#masterviewmodel">Master View Model</a>
+    </li>
+    <li>
+      <a href="#registerviewmodel">Register View Model</a>
+    </li>
+    <li>
+      <a href="#bootstrapper-class">Bootstrapper class</a>
+    </li
+  </ul>
+  <li>
+    <a href="#rbrdesktopuilibrary">RBRDestopUI.Library</a>
+  </li>
+  <li>
+    <a href="#rbrdesktopuilibrary">RBRDestopUI.Library</a>
+  </li> 
 </ul>
-    
 
 <br>
 
